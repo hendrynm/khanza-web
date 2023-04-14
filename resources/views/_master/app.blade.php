@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo khanza-web mini.png') }}">
+
     <title>@yield('fitur') | @yield('menu') | Khanza Web</title>
 
     @vite('resources/css/app.css')
@@ -26,7 +28,7 @@
         $(document).ready(function () {
             let nama_fitur = '#select-' + '@yield('fitur')';
             let nama_fitur_low = nama_fitur.toLowerCase();
-            $(nama_fitur_low).addClass('bg-pink-400');
+            $(nama_fitur_low).addClass('bg-pink-300');
         });
     </script>
 </body>
