@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class General extends Controller
 {
-    public function index()
+    public function beranda(): View
     {
-        return view('index');
+        return view('beranda');
     }
 }
