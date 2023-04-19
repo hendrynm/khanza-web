@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\General;
 use App\Http\Controllers\Loket;
+use App\Http\Controllers\RekamMedis;
 use App\Http\Controllers\Reservasi;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +43,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::get('/penjadwalan', [General::class, 'penjadwalan'])->name('penjadwalan');
 
-    Route::get('/rekam', [General::class, 'rekam'])->name('rekam');
+
+    Route::prefix('rekam')->name('rekam_medis.')->controller(RekamMedis::class)->group(function (){
+        Route::get('/', 'beranda')->name('beranda');
+        Route::get('/profil', 'profil')->name('profil');
+    });
 
     Route::get('/tindakan', [General::class, 'tindakan'])->name('tindakan');
 

@@ -35,7 +35,8 @@
 
     <script type="module">
         $(document).ready(function () {
-            let nama_fitur = '#select-' + '@yield('fitur')';
+            let tampil_fitur = '@yield('fitur')';
+            let nama_fitur = '#select-' + tampil_fitur.replaceAll(' ','_');
             let nama_fitur_low = nama_fitur.toLowerCase();
             $(nama_fitur_low).addClass('bg-pink-300');
         });
