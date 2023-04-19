@@ -148,9 +148,9 @@
 
         <div class="pl-5 pr-8 pt-20 pb-3">
             <!-- Grid -->
-            <div class="grid xl:grid-cols-2 2xl:grid-cols-3 overflow-hidden pb-5 gap-5">
+            <div class="grid xl:grid-cols-2 2xl:grid-cols-3 overflow-hidden pl-1 pt-1 pb-5 gap-5">
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-emerald-500 hover:bg-emerald-700 rounded-md text-white hs-tooltip-toggle" href="#">
+                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-emerald-500 hover:bg-emerald-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" href="#">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-cyan-500 hover:bg-cyan-700 rounded-md text-white hs-tooltip-toggle" href="#">
+                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-cyan-500 hover:bg-cyan-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2" href="#">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -191,7 +191,7 @@
                 </div>
 
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-orange-500 hover:bg-orange-700 rounded-md text-white hs-tooltip-toggle" href="#">
+                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-orange-500 hover:bg-orange-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" href="#">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -211,7 +211,7 @@
                 </div>
 
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-indigo-500 hover:bg-indigo-700 rounded-md text-white hs-tooltip-toggle" href="#">
+                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-indigo-500 hover:bg-indigo-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" href="#">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -230,7 +230,7 @@
                 </div>
 
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-red-500 hover:bg-red-700 rounded-md text-white hs-tooltip-toggle" href="#">
+                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-red-500 hover:bg-red-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" href="#">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">

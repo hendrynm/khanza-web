@@ -1,5 +1,5 @@
 <!-- Sidebar Toggle -->
-<div class="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 md:px-8 lg:hidden">
+<div class="sticky top-0 inset-x-0 z-[20] bg-white border-y px-4 sm:px-6 md:px-8 lg:hidden">
     <div class="flex items-center py-4">
         <!-- Navigation Toggle -->
         <div class="flex text-gray-500 hover:text-white items-center" data-hs-overlay="#application-sidebar" aria-controls="application-sidebar" aria-label="Toggle navigation">
@@ -58,7 +58,7 @@
             </li>
 
             <li class="hs-accordion" id="projects-accordion">
-                <a class="hs-accordion-toggle flex items-center gap-x-3.5 py-4 px-7 -mx-5 text-white rounded-md hover:bg-pink-300     " href="{{ route('admin.reservasi') }}" id="select-reservasi">
+                <a class="hs-accordion-toggle flex items-center gap-x-3.5 py-4 px-7 -mx-5 text-white rounded-md hover:bg-pink-300     " href="{{ route('admin.reservasi.beranda') }}" id="select-reservasi">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>

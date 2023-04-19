@@ -5,7 +5,7 @@
 
 <!-- Page Heading -->
 <header>
-    <p class="text-2xl -mb-1 font-semibold text-blue-600">Selamat Datang</p>
+    <p class="text-2xl -mb-1 font-bold text-pink-600">Selamat Datang</p>
     <h1 class="text-4xl font-bold text-gray-800">Dokter ABC</h1>
     <p class="mt-2 text-lg text-gray-800 ">
         Silakan memilih menu yang tersedia di sebelah kiri atau bawah untuk melanjutkan.
@@ -18,7 +18,7 @@
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-24 h-24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />

@@ -9,6 +9,8 @@
     <title>@yield('fitur') | @yield('menu') | Khanza Web</title>
 
     @vite('resources/css/app.css')
+
+    @stack('style')
 </head>
 <body class="bg-lime-100" style="font-family: Inter">
     <!-- ========== MAIN CONTENT ========== -->
@@ -17,12 +19,14 @@
 
     <div class="container">
         <!-- Content -->
-        <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72">
+        <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72 z-[0]">
 
             @yield('konten')
         </div>
         <!-- End Content -->
     </div>
+
+    @yield('modal')
 
     <!-- ========== END MAIN CONTENT ========== -->
     @vite('resources/js/app.js')

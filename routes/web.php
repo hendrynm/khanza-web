@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\General;
 use App\Http\Controllers\Loket;
+use App\Http\Controllers\Reservasi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
         });
     });
 
-    Route::get('/reservasi', [General::class, 'reservasi'])->name('reservasi');
+    Route::prefix('reservasi')->name('reservasi.')->controller(Reservasi::class)->group(function (){
+        Route::get('/', 'beranda')->name('beranda');
+        Route::get('/tujuan', 'tujuan')->name('tujuan');
+        Route::get('/jadwal', 'jadwal')->name('jadwal');
+    });
 
     Route::get('/penjadwalan', [General::class, 'penjadwalan'])->name('penjadwalan');
 
