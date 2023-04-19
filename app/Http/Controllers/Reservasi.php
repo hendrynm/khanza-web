@@ -13,11 +13,16 @@ class Reservasi extends Controller
 
     public function tujuan(): View
     {
-        return view('reservasi.tujuan');
+        return view('reservasi.lama.tujuan');
     }
 
     public function jadwal(): View
     {
-        return view('reservasi.jadwal');
+        return view('reservasi.lama.jadwal');
+    }
+
+    public function daftar(): View
+    {
+        return view('reservasi.daftar.daftar');
     }
 }

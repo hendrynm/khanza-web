@@ -40,6 +40,8 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/', 'beranda')->name('beranda');
         Route::get('/tujuan', 'tujuan')->name('tujuan');
         Route::get('/jadwal', 'jadwal')->name('jadwal');
+
+        Route::get('/daftar', 'daftar')->name('daftar');
     });
 
     Route::get('/penjadwalan', [General::class, 'penjadwalan'])->name('penjadwalan');

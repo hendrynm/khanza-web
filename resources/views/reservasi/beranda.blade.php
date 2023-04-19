@@ -41,6 +41,32 @@
             </div>
         </div>
         <!-- End Card -->
+
+        <!-- Card -->
+        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="h-40 flex flex-col justify-center px-5 bg-amber-500 rounded-t-xl text-white">
+                <span class="text-sm font-medium">
+                    Nomor Kartu:
+                </span>
+                <span class="text-xl font-bold">
+                    -
+                </span>
+                <span class="text-sm font-medium mt-3">
+                    Nama Pasien:
+                </span>
+                <span class="text-xl font-bold">
+                    -
+                </span>
+            </div>
+            <div class="p-4 hover:bg-gray-200 hover:rounded-b-xl">
+                <a href="{{ route('admin.reservasi.daftar') }}">
+                    <h3 class="text-lg text-center font-semibold text-amber-500">
+                        Daftar Pasien Baru
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <!-- End Card -->
     </div>
     <!-- End Grid -->
 </div>
