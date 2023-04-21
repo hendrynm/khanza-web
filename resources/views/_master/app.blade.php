@@ -12,7 +12,7 @@
 
     @stack('style')
 </head>
-<body class="bg-lime-100" style="font-family: Inter">
+<body class="bg-white" style="font-family: Inter,sans-serif">
     <!-- ========== MAIN CONTENT ========== -->
 
     @include('_layout.sidebar')
@@ -38,7 +38,22 @@
             let tampil_fitur = '@yield('fitur')';
             let nama_fitur = '#select-' + tampil_fitur.replaceAll(' ','_');
             let nama_fitur_low = nama_fitur.toLowerCase();
-            $(nama_fitur_low).addClass('bg-pink-300');
+
+            switch(nama_fitur_low){
+                case('#select-loket'):
+                    $(nama_fitur_low).addClass('text-blue-500');
+                    break;
+                case('#select-reservasi'):
+                    $(nama_fitur_low).addClass('text-amber-500');
+                    break;
+                case('#select-rekam_medis'):
+                    $(nama_fitur_low).addClass('text-emerald-500');
+                    break;
+                case('#select-tindakan'):
+                    $(nama_fitur_low).addClass('text-red-500');
+                    break;
+            }
+            $(nama_fitur_low).addClass('bg-gray-100');
         });
     </script>
 </body>

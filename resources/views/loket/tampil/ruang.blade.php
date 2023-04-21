@@ -17,11 +17,11 @@
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl">
             <div class="h-48 flex flex-col justify-center items-center rounded-t-xl text-white">
                 <img src="https://rumahsakitkartini.com/upload/images/gallery/img_vDsU2Vy.jpg" alt="foto ruangan" class="h-48 w-full object-cover object-center rounded-t-xl">
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="{{ route('admin.loket.tampil.loket') }}">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Lobby Utama
@@ -32,11 +32,11 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl">
             <div class="h-48 flex flex-col justify-center items-center rounded-t-xl text-white">
                 <img src="https://rumahsakit.unair.ac.id/website/wp-content/uploads/2014/04/DSC_a007a8.jpg" alt="foto ruangan" class="h-48 w-full object-cover object-center rounded-t-xl">
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="{{ route('admin.loket.tampil.loket') }}">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Laboratorium Darah

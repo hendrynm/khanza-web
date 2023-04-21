@@ -17,11 +17,11 @@
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <span class="text-8xl font-bold">1</span>
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="{{ route('admin.loket.tampil.tampil') }}">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Daftar Pasien Baru
@@ -32,11 +32,11 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <span class="text-8xl font-bold">2</span>
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="#">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Daftar Pasien Lama
@@ -47,11 +47,11 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <span class="text-8xl font-bold">3</span>
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="#">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Kasir
@@ -62,11 +62,11 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <span class="text-8xl font-bold">4</span>
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="#">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Kasir
@@ -77,11 +77,11 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <span class="text-8xl font-bold">5</span>
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="#">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Customer Service
@@ -92,11 +92,11 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl   ">
+        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
                 <span class="text-8xl font-bold">6</span>
             </div>
-            <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                 <a href="#">
                     <h3 class="text-xl text-center font-semibold text-blue-500">
                         Ambil Obat

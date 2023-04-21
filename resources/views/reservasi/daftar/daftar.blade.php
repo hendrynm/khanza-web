@@ -14,7 +14,7 @@
 
 <!-- Card Blog -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-    <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-8">
+    <div class="bg-amber-100 px-4 py-5 shadow sm:rounded-lg sm:p-8">
         <form class="space-y-10" action="#" method="post">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">

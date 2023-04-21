@@ -17,7 +17,7 @@
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+        <div class="group flex flex-col h-full bg-emerald-100 border border-gray-200 shadow-sm rounded-xl">
             <div class="h-40 flex flex-col justify-center px-5 bg-emerald-500 rounded-t-xl text-white">
                 <span class="text-sm font-medium">
                     Nomor Kartu:
@@ -32,7 +32,7 @@
                     Nama Pasien
                 </span>
             </div>
-            <div class="p-4 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 hover:bg-emerald-200 hover:rounded-b-xl">
                 <a href="{{ route('admin.rekam_medis.profil') }}">
                     <h3 class="text-lg text-center font-semibold text-emerald-500">
                         Pilih

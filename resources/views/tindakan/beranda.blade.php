@@ -5,7 +5,7 @@
 
 <!-- Page Heading -->
 <header>
-    <h1 class="text-4xl font-bold text-indigo-600">Fitur Tindakan Medis</h1>
+    <h1 class="text-4xl font-bold text-red-600">Fitur Tindakan Medis</h1>
     <p class="mt-2 text-lg text-gray-800 ">
         Silakan memilih <b>pasien</b> di bawah untuk melanjutkan.
     </p>
@@ -17,8 +17,8 @@
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card -->
-        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="h-40 flex flex-col justify-center px-5 bg-indigo-500 rounded-t-xl text-white">
+        <div class="group flex flex-col h-full bg-red-100 border border-gray-200 shadow-sm rounded-xl">
+            <div class="h-40 flex flex-col justify-center px-5 bg-red-500 rounded-t-xl text-white">
                 <span class="text-sm font-medium">
                     Nomor Kartu:
                 </span>
@@ -32,9 +32,9 @@
                     Nama Pasien
                 </span>
             </div>
-            <div class="p-4 hover:bg-gray-200 hover:rounded-b-xl">
+            <div class="p-4 hover:bg-red-200 hover:rounded-b-xl">
                 <a href="{{ route('admin.tindakan.tindakan') }}">
-                    <h3 class="text-lg text-center font-semibold text-indigo-500">
+                    <h3 class="text-lg text-center font-semibold text-red-500">
                         Pilih
                     </h3>
                 </a>

@@ -15,10 +15,10 @@
 <!-- Card Section -->
 <div class="max-w-[40rem] px-4 pt-10 pb-5 sm:px-6 lg:px-8 lg:pt-10 lg:pb-5 mx-auto">
     <!-- Card -->
-    <div class="bg-white rounded-xl shadow p-4 sm:px-8 sm:py-6">
+    <div class="bg-gray-100 rounded-xl shadow p-4 sm:px-8 sm:py-6">
         <form method="post" action="#">
             <!-- Card -->
-            <div class="bg-white rounded-xl ">
+            <div class="bg-gray-100 rounded-xl ">
                 <!-- Grid -->
                 <div class="space-y-4 sm:space-y-6">
                     <div class="space-y-2">

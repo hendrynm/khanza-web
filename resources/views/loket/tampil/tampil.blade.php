@@ -17,7 +17,7 @@
     <!-- Grid -->
     <div class="grid md:grid-cols-3 rounded-xl overflow-hidden gap-5">
         <!-- Card -->
-        <div class="flex flex-col bg-white border shadow-sm rounded-xl  ">
+        <div class="flex flex-col bg-blue-100 border shadow-sm rounded-xl  ">
             <div class="p-4 md:p-5 flex gap-x-4">
                 <div class="flex-shrink-0 flex justify-center items-center w-[46px] h-[46px] bg-blue-500 rounded-md text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -54,7 +54,7 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="flex flex-col bg-white border shadow-sm rounded-xl  ">
+        <div class="flex flex-col bg-blue-100 border shadow-sm rounded-xl  ">
             <div class="p-4 md:p-5 flex gap-x-4">
                 <div class="flex-shrink-0 flex justify-center items-center w-[46px] h-[46px] bg-blue-500 rounded-md text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -90,7 +90,7 @@
         <!-- End Card -->
 
         <!-- Card -->
-        <div class="flex flex-col bg-white border shadow-sm rounded-xl  ">
+        <div class="flex flex-col bg-blue-100 border shadow-sm rounded-xl  ">
             <div class="p-4 md:p-5 flex gap-x-4">
                 <div class="flex-shrink-0 flex justify-center items-center w-[46px] h-[46px] bg-blue-500 rounded-md text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -131,7 +131,7 @@
 
 <!-- Card Section -->
 <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 py-3 mx-auto">
-    <div class="bg-white border rounded-xl shadow-sm flex">
+    <div class="bg-blue-100 border rounded-xl shadow-sm flex">
         <div class="flex-shrink-0 relative w-96 rounded-t-xl overflow-hidden">
             <div class="pt-3 flex justify-center items-center h-20">
                 <h3 class="text-2xl font-semibold text-gray-600">
