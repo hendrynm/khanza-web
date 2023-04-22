@@ -34,6 +34,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
             Route::get('/pilih', 'pilih')->name('pilih');
             Route::get('/ubah', 'ubah')->name('ubah');
         });
+
+        Route::prefix('publik')->name('publik.')->group(function (){
+            Route::get('/tampil', 'publik')->name('tampil');
+        });
     });
 
     Route::prefix('reservasi')->name('reservasi.')->controller(Reservasi::class)->group(function (){
@@ -57,4 +61,8 @@ Route::prefix('admin')->name('admin.')->group(function (){
     });
 
     Route::get('/keluar', [General::class, 'keluar'])->name('keluar');
+});
+
+Route::fallback(function() {
+    return response()->view('_error.404', [], 404);
 });

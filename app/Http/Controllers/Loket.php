@@ -35,4 +35,9 @@ class Loket extends Controller
     {
         return view('loket.atur.ubah');
     }
+
+    public function publik(): View
+    {
+        return view('loket.publik.tampil');
+    }
 }

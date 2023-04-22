@@ -14,7 +14,7 @@
         height: 3rem !important;
     }
     .fc-col-header-cell-cushion {
-        font-weight: 400;
+        font-weight: 400 !important;
     }
     .fc-timegrid-slot-label-cushion {
         display: flex !important;
@@ -34,7 +34,7 @@
         border-left: 12px solid red !important;
     }
     .fc-highlight:after {
-        content: 'Pilih waktu ini';
+        content: 'Pilih waktu ini' !important;
     }
     :root {
         --fc-today-bg-color: white !important;
@@ -65,7 +65,7 @@
 @section('modal')
 <div id="hs-large-modal" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all lg:max-w-6xl lg:w-full m-3 lg:mx-auto">
-        <div class="flex flex-col bg-white border shadow-sm rounded-xl h-[40rem]">
+        <div class="flex flex-col bg-amber-100 border shadow-sm rounded-xl h-[40rem]">
             <div class="flex justify-between items-center py-3 px-4 border-b">
                 <h3 class="font-bold text-gray-800 text-2xl">
                     Jadwal Ketersediaan: <span class="text-amber-500">Dr. Sutomo, S.Pd., M.Pd.I.</span>

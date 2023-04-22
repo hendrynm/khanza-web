@@ -146,9 +146,9 @@
         </div>
 
 
-        <div class="pl-5 pr-8 pt-20 pb-3">
+        <div class="px-5 pt-20 pb-3">
             <!-- Grid -->
-            <div class="grid xl:grid-cols-2 2xl:grid-cols-3 overflow-hidden pl-1 pt-1 pb-5 gap-5">
+            <div class="grid xl:grid-cols-2 2xl:grid-cols-3 overflow-hidden px-1 py-1 gap-5">
                 <div class="hs-tooltip inline-block">
                     <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-emerald-500 hover:bg-emerald-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" href="#">
                         <div class="flex flex-row">
@@ -243,6 +243,25 @@
 
                             <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
                                 Tutup loket ini (tidak melayani antrean)
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hs-tooltip inline-block">
+                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-slate-500 hover:bg-slate-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" href="{{ route('admin.loket.publik.tampil') }}" target="_blank">
+                        <div class="flex flex-row">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                            </div>
+                            <div class="flex items-center pl-4">
+                                <span class="text-2xl font-medium">Tampil</span>
+                            </div>
+
+                            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
+                                Tampilkan (display) seluruh loket antrean di ruang ini.
                             </span>
                         </div>
                     </a>
