@@ -45,7 +45,7 @@
                     </div>
                     <div class="mt-1 flex items-center gap-x-2">
                         <h3 class="text-lg sm:text-xl font-semibold text-blue-500">
-                            Lobby Utama
+                            {{ $tampil->nama_ruang }}
                         </h3>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="mt-1 flex items-center gap-x-2">
                         <h3 class="text-lg sm:text-xl font-semibold text-blue-500">
-                            Pendaftaran Baru
+                            {{ $tampil->nama_loket }}
                         </h3>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="mt-1 flex items-center gap-x-2">
                         <h3 class="text-lg sm:text-xl font-semibold text-blue-500">
-                            Loket 1
+                            Loket {{ $tampil->nomor_loket }} - Kode {{ $tampil->kode_loket }}
                         </h3>
                     </div>
                 </div>
@@ -134,13 +134,13 @@
     <div class="bg-blue-100 border rounded-xl shadow-sm flex">
         <div class="flex-shrink-0 relative w-96 rounded-t-xl overflow-hidden">
             <div class="pt-3 flex justify-center items-center h-20">
-                <h3 class="text-2xl font-semibold text-gray-600">
+                <h3 class="text-2xl text-gray-500">
                     Nomor Antrean Sekarang
                 </h3>
             </div>
             <div class="pb-8 gap-x-4 flex justify-center items-center">
                 <div class="flex-shrink-0 flex justify-center items-center w-80 h-60 bg-blue-500 rounded-xl text-white p-0 text-8xl font-bold">
-                    A-1
+                    {{ ($tampil->kode_loket . $tampil->nomor_loket) ?? 'A000' }}
                 </div>
             </div>
         </div>

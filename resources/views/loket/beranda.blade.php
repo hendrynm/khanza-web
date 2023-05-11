@@ -45,7 +45,7 @@
                 </svg>
             </div>
             <div class="p-4 md:p-6 hover:bg-gray-200 hover:rounded-b-xl">
-                <a href="{{ route('admin.loket.atur.ubah') }}">
+                <a href="{{ route('admin.loket.atur.beranda') }}">
                     <h3 class="text-2xl text-center font-semibold text-slate-500">
                         Pengaturan Loket
                     </h3>

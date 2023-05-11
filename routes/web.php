@@ -25,14 +25,29 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/', 'beranda')->name('beranda');
 
         Route::prefix('tampil')->name('tampil.')->group(function (){
-            Route::get('/ruang', 'ruang')->name('ruang');
-            Route::get('/loket', 'loket')->name('loket');
-            Route::get('/tampil', 'tampil')->name('tampil');
+            Route::get('/ruang', 'tampil_ruang')->name('ruang');
+            Route::get('/loket/{uuid}', 'tampil_loket')->name('loket');
+            Route::get('/tampil/{uuid}', 'tampil_tampil')->name('tampil');
         });
 
         Route::prefix('atur')->name('atur.')->group(function (){
-            Route::get('/pilih', 'pilih')->name('pilih');
-            Route::get('/ubah', 'ubah')->name('ubah');
+            Route::get('/', 'atur_beranda')->name('beranda');
+
+            Route::prefix('ruang')->name('ruang.')->group(function (){
+                Route::get('/tambah', 'atur_ruang_tambah')->name('tambah');
+                Route::post('/tambah', 'atur_ruang_tambah_post')->name('tambah.post');
+                Route::get('/ubah/{uuid}', 'atur_ruang_ubah')->name('ubah');
+                Route::post('/ubah/{uuid}', 'atur_ubah_ruang_post')->name('ubah.post');
+                Route::get('/hapus/{uuid}', 'atur_ruang_hapus')->name('hapus');
+            });
+
+            Route::prefix('loket')->name('loket.')->group(function (){
+                Route::get('/tambah', 'atur_loket_tambah')->name('tambah');
+                Route::post('/tambah', 'atur_loket_tambah_post')->name('tambah.post');
+                Route::get('/ubah/{uuid}', 'atur_loket_ubah')->name('ubah');
+                Route::post('/ubah/{uuid}', 'atur_ubah_loket_post')->name('ubah.post');
+                Route::get('/hapus/{uuid}', 'atur_loket_hapus')->name('hapus');
+            });
         });
 
         Route::prefix('publik')->name('publik.')->group(function (){

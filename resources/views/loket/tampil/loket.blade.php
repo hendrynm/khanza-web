@@ -16,95 +16,22 @@
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <!-- Card -->
-        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-            <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                <span class="text-8xl font-bold">1</span>
+        @foreach($loket as $l)
+            <!-- Card -->
+            <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
+                <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
+                    <span class="text-8xl font-bold">{{ $l->nomor_loket }}</span>
+                </div>
+                <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
+                    <a href="{{ route('admin.loket.tampil.tampil',strtoupper($l->uuid)) }}">
+                        <h3 class="text-xl text-center font-semibold text-blue-500">
+                            {{ $l->nama_loket }}
+                        </h3>
+                    </a>
+                </div>
             </div>
-            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
-                <a href="{{ route('admin.loket.tampil.tampil') }}">
-                    <h3 class="text-xl text-center font-semibold text-blue-500">
-                        Daftar Pasien Baru
-                    </h3>
-                </a>
-            </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-            <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                <span class="text-8xl font-bold">2</span>
-            </div>
-            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
-                <a href="#">
-                    <h3 class="text-xl text-center font-semibold text-blue-500">
-                        Daftar Pasien Lama
-                    </h3>
-                </a>
-            </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-            <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                <span class="text-8xl font-bold">3</span>
-            </div>
-            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
-                <a href="#">
-                    <h3 class="text-xl text-center font-semibold text-blue-500">
-                        Kasir
-                    </h3>
-                </a>
-            </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-            <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                <span class="text-8xl font-bold">4</span>
-            </div>
-            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
-                <a href="#">
-                    <h3 class="text-xl text-center font-semibold text-blue-500">
-                        Kasir
-                    </h3>
-                </a>
-            </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-            <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                <span class="text-8xl font-bold">5</span>
-            </div>
-            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
-                <a href="#">
-                    <h3 class="text-xl text-center font-semibold text-blue-500">
-                        Customer Service
-                    </h3>
-                </a>
-            </div>
-        </div>
-        <!-- End Card -->
-
-        <!-- Card -->
-        <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-            <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                <span class="text-8xl font-bold">6</span>
-            </div>
-            <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
-                <a href="#">
-                    <h3 class="text-xl text-center font-semibold text-blue-500">
-                        Ambil Obat
-                    </h3>
-                </a>
-            </div>
-        </div>
-        <!-- End Card -->
+            <!-- End Card -->
+        @endforeach
     </div>
     <!-- End Grid -->
 </div>

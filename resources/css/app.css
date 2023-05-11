@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] { display: none !important; }
+
 .fc-day-today .fc-tgl {
     @apply p-1.5 rounded-full bg-amber-500 font-semibold text-white !important
 }
@@ -78,4 +80,16 @@
 
 .grid-rows-12 {
     grid-template-rows: repeat(12, minmax(0, 1fr));
+}
+
+@keyframes begron-kedip {
+    0% {
+        @apply bg-yellow-50;
+    }
+    50% {
+        @apply bg-yellow-300;
+    }
+    100% {
+        @apply bg-yellow-50;
+    }
 }

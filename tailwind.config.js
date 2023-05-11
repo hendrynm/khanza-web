@@ -7,6 +7,7 @@ module.exports = {
       "./resources/**/*.js",
       "./resources/**/*.vue",
       'node_modules/preline/dist/*.js',
+      './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
   ],
   theme: {
     extend: {
@@ -29,6 +30,10 @@ module.exports = {
             '8xl': '6rem',
             '9xl': '7.5rem',
             '10xl': '9rem',
+            '11xl': '10.5rem',
+            '12xl': '12rem',
+            '13xl': '13.5rem',
+            '14xl': '15rem',
         },
     },
   },
