@@ -17,7 +17,13 @@ class AntreanLoket extends Model
         'kode_loket',
         'nomor_loket',
         'nama_loket',
+        'bpjs',
         'status',
         'uuid'
     ];
+
+    public function web_plus_antrean_warna()
+    {
+        return $this->belongsTo(AntreanWarna::class, 'id_warna', 'id_warna');
+    }
 }

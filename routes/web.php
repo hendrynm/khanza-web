@@ -37,21 +37,24 @@ Route::prefix('admin')->name('admin.')->group(function (){
                 Route::get('/tambah', 'atur_ruang_tambah')->name('tambah');
                 Route::post('/tambah', 'atur_ruang_tambah_post')->name('tambah.post');
                 Route::get('/ubah/{uuid}', 'atur_ruang_ubah')->name('ubah');
-                Route::post('/ubah/{uuid}', 'atur_ubah_ruang_post')->name('ubah.post');
+                Route::post('/ubah/{uuid}', 'atur_ruang_ubah_post')->name('ubah.post');
                 Route::get('/hapus/{uuid}', 'atur_ruang_hapus')->name('hapus');
             });
 
             Route::prefix('loket')->name('loket.')->group(function (){
-                Route::get('/tambah', 'atur_loket_tambah')->name('tambah');
-                Route::post('/tambah', 'atur_loket_tambah_post')->name('tambah.post');
-                Route::get('/ubah/{uuid}', 'atur_loket_ubah')->name('ubah');
-                Route::post('/ubah/{uuid}', 'atur_ubah_loket_post')->name('ubah.post');
-                Route::get('/hapus/{uuid}', 'atur_loket_hapus')->name('hapus');
+                Route::get('/{uuid}', 'atur_loket_beranda')->name('beranda');
+                Route::get('/{uuid}/tambah', 'atur_loket_tambah')->name('tambah');
+                Route::post('/{uuid}/tambah', 'atur_loket_tambah_post')->name('tambah.post');
+                Route::get('/{uuid}/ubah/{uuid_loket}', 'atur_loket_ubah')->name('ubah');
+                Route::post('/{uuid}/ubah/{uuid_loket}', 'atur_loket_ubah_post')->name('ubah.post');
+                Route::get('/{uuid}/hapus/{uuid_loket}', 'atur_loket_hapus')->name('hapus');
             });
         });
 
         Route::prefix('publik')->name('publik.')->group(function (){
-            Route::get('/tampil', 'publik')->name('tampil');
+            Route::get('/', 'publik_beranda')->name('beranda');
+            Route::get('/panggil/{uuid}', 'publik_panggil')->name('panggil');
+            Route::get('/cetak/{uuid}', 'publik_cetak')->name('cetak');
         });
     });
 

@@ -26,25 +26,30 @@ class Loket extends DataTableComponent
             ->setSearchEnabled()
             ->setSortingEnabled()
             ->setConfigurableAreas([
-                'toolbar-left-start' => 'livewire.loket.loket.tambah',
+                'toolbar-left-start' => ['livewire.loket.loket.tambah', ['uuid' => $this->uuid]],
             ]);
     }
 
     public function columns(): array
     {
         return [
-            Column::make('ID Loket', 'id_loket'),
+            Column::make('No Loket', 'nomor_loket'),
             Column::make('Kode Loket', 'kode_loket'),
             Column::make('Nama Loket', 'nama_loket'),
-            Column::make('No Loket', 'nomor_loket'),
+            Column::make('Warna', 'web_plus_antrean_warna.warna')
+                ->format(fn ($value) => view('livewire.loket.loket.warna', ['warna' => $value])),
+            Column::make('Jenis', 'bpjs')
+                ->format(fn ($value) => view('livewire.loket.loket.jenis', ['jenis' => $value])),
             Column::make('Aksi', 'uuid')
-                ->format(fn ($value) => view('livewire.loket.loket.ubah_hapus', ['uuid' => $value])),
+                ->format(fn ($value) => view('livewire.loket.loket.aksi', ['uuid' => $value])),
         ];
     }
 
     public function builder(): Builder
     {
-        return AntreanLoket::join('web_plus_antrean_ruangan', 'web_plus_antrean_loket.id_ruang', '=', 'web_plus_antrean_ruangan.id_ruang')
-            ->where('web_plus_antrean_ruangan.uuid', $this->uuid);
+        return AntreanLoket::join('web_plus_antrean_warna', 'web_plus_antrean_loket.id_warna', '=', 'web_plus_antrean_warna.id_warna')
+            ->join('web_plus_antrean_ruangan', 'web_plus_antrean_loket.id_ruang', '=', 'web_plus_antrean_ruangan.id_ruang')
+            ->where('web_plus_antrean_ruangan.uuid', $this->uuid)
+            ->orderBy('web_plus_antrean_loket.nomor_loket');
     }
 }

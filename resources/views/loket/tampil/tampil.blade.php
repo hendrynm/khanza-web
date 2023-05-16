@@ -55,6 +55,13 @@
 
         <!-- Card -->
         <div class="flex flex-col bg-blue-100 border shadow-sm rounded-xl  ">
+            @if($tampil->bpjs !== 0)
+                <div class="relative">
+                    <span class="absolute top-0 right-0 rounded-tr-xl rounded-bl-xl text-xs font-medium text-white py-1.5 px-3
+                    @if($tampil->bpjs === 1) bg-green-700">Khusus BPJS</span>
+                    @else bg-yellow-500">Umum & BPJS</span> @endif
+                </div>
+            @endif
             <div class="p-4 md:p-5 flex gap-x-4">
                 <div class="flex-shrink-0 flex justify-center items-center w-[46px] h-[46px] bg-blue-500 rounded-md text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -91,6 +98,11 @@
 
         <!-- Card -->
         <div class="flex flex-col bg-blue-100 border shadow-sm rounded-xl  ">
+            <div class="relative">
+                    <span class="absolute top-0 right-0 rounded-tr-xl rounded-bl-xl text-xs font-medium text-white py-1.5 px-3 bg-red-700">
+                        Sisa Antrean: <span id="sisa-antrean">0</span>
+                    </span>
+            </div>
             <div class="p-4 md:p-5 flex gap-x-4">
                 <div class="flex-shrink-0 flex justify-center items-center w-[46px] h-[46px] bg-blue-500 rounded-md text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -132,66 +144,84 @@
 <!-- Card Section -->
 <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 py-3 mx-auto">
     <div class="bg-blue-100 border rounded-xl shadow-sm flex">
-        <div class="flex-shrink-0 relative w-96 rounded-t-xl overflow-hidden">
+        <div class="flex-shrink-0 relative w-[30vw] rounded-t-xl overflow-hidden">
             <div class="pt-3 flex justify-center items-center h-20">
-                <h3 class="text-2xl text-gray-500">
+                <h3 class="text-xl text-gray-500 font-medium">
                     Nomor Antrean Sekarang
                 </h3>
             </div>
             <div class="pb-8 gap-x-4 flex justify-center items-center">
-                <div class="flex-shrink-0 flex justify-center items-center w-80 h-60 bg-blue-500 rounded-xl text-white p-0 text-8xl font-bold">
-                    {{ ($tampil->kode_loket . $tampil->nomor_loket) ?? 'A000' }}
+                <div class="flex-shrink-0 flex justify-center items-center w-[25vw] h-60 bg-blue-500 rounded-xl text-white p-0 text-8xl font-bold" id="nomor-antrean">
+                    {{ $tampil->kode_loket . '000' }}
                 </div>
             </div>
         </div>
 
-
-        <div class="px-5 pt-20 pb-3">
+        <div class="px-3 pt-20 pb-3">
             <!-- Grid -->
-            <div class="grid xl:grid-cols-2 2xl:grid-cols-3 overflow-hidden px-1 py-1 gap-5">
+            <div class="grid grid-cols-1 overflow-hidden px-1 py-1 gap-5">
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="hs-tooltip inline-block">
+                        <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-emerald-500 hover:bg-emerald-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" href="#" id="panggil">
+                            <div class="flex flex-row">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+                                    </svg>
+                                </div>
+                                <div class="flex items-center pl-4">
+                                    <span class="text-2xl font-medium">Panggil</span>
+                                </div>
+
+                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
+                                Panggil nomor antrean berikutnya (otomatis mencari)
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="hs-tooltip inline-block">
+                        <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-red-500 hover:bg-red-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" href="#" id="ulang">
+                            <div class="flex flex-row">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+                                    </svg>
+                                </div>
+                                <div class="flex items-center pl-4">
+                                    <span class="text-2xl font-medium">Ulang</span>
+                                </div>
+
+                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
+                                Ulangi pemanggilan nomor antrean saat ini
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-emerald-500 hover:bg-emerald-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" href="#">
+                    <button class="flex-shrink-0 flex justify-center items-center w-[15rem] h-16 bg-orange-500 hover:bg-orange-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" id="sebelumnya">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
                                 </svg>
                             </div>
                             <div class="flex items-center pl-4">
-                                <span class="text-2xl font-medium">Panggil</span>
+                                <span class="text-2xl font-medium">Sebelumnya</span>
                             </div>
 
-
                             <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
-                                Panggil nomor antrean berikutnya
+                                Setel nomor antrean ke nomor sebelumnya
                             </span>
                         </div>
-                    </a>
+                    </button>
                 </div>
 
                 <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-cyan-500 hover:bg-cyan-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2" href="#">
-                        <div class="flex flex-row">
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                                </svg>
-
-                            </div>
-                            <div class="flex items-center pl-4">
-                                <span class="text-2xl font-medium">Ulang</span>
-                            </div>
-
-
-                            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
-                                Ulangi pemanggilan nomor antrean ini
-                            </span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-orange-500 hover:bg-orange-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" href="#">
+                    <button class="flex-shrink-0 flex justify-center items-center w-[15rem] h-16 bg-yellow-500 hover:bg-yellow-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2" id="berikutnya">
                         <div class="flex flex-row">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -199,77 +229,118 @@
                                 </svg>
                             </div>
                             <div class="flex items-center pl-4">
-                                <span class="text-2xl font-medium">Lewati</span>
-                            </div>
-
-
-                            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
-                                Lewati (skip) pemanggilan nomor antrean ini
-                            </span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-indigo-500 hover:bg-indigo-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" href="#">
-                        <div class="flex flex-row">
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-                                </svg>
-                            </div>
-                            <div class="flex items-center pl-4">
-                                <span class="text-2xl font-medium">Istirahat</span>
+                                <span class="text-2xl font-medium">Berikutnya</span>
                             </div>
 
                             <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
-                                Tutup loket ini untuk sementara waktu (tidak melayani antrean)
+                                Setel nomor antrean ke nomor berikutnya
                             </span>
                         </div>
-                    </a>
-                </div>
-
-                <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-red-500 hover:bg-red-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" href="#">
-                        <div class="flex flex-row">
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                </svg>
-                            </div>
-                            <div class="flex items-center pl-4">
-                                <span class="text-2xl font-medium">Tutup</span>
-                            </div>
-
-                            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
-                                Tutup loket ini (tidak melayani antrean)
-                            </span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="hs-tooltip inline-block">
-                    <a class="flex-shrink-0 flex justify-center items-center w-[12rem] h-16 bg-slate-500 hover:bg-slate-700 rounded-md text-white hs-tooltip-toggle focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" href="{{ route('admin.loket.publik.tampil') }}" target="_blank">
-                        <div class="flex flex-row">
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z" />
-                                </svg>
-                            </div>
-                            <div class="flex items-center pl-4">
-                                <span class="text-2xl font-medium">Tampil</span>
-                            </div>
-
-                            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-sm font-medium text-white rounded-md shadow-sm" role="tooltip">
-                                Tampilkan (display) seluruh loket antrean di ruang ini.
-                            </span>
-                        </div>
-                    </a>
+                    </button>
                 </div>
             </div>
+            <!-- End Grid -->
         </div>
     </div>
 </div>
 <!-- End Card Section -->
 
 @endsection
+
+@push('script')
+
+<script type="module">
+    const panggil = $('#panggil');
+    const ulang = $('#ulang');
+    const sebelumnya = $('#sebelumnya');
+    const berikutnya = $('#berikutnya');
+    const sisa_antrean = $('#sisa-antrean');
+    const nomor = $('#nomor-antrean');
+
+    $(document).ready(function () {
+        cek_sisa_nomor_urut();
+        setInterval(cek_sisa_nomor_urut, 10000);
+        ulang.on('click', function(){
+            tekan_tombol_ulang(ambil_nomor(nomor));
+        });
+        panggil.on('click', function (){
+            tekan_tombol_panggil();
+        });
+        sebelumnya.on('click', function (){
+            tekan_tombol_sebelumnya(ambil_nomor(nomor));
+        });
+        berikutnya.on('click', function (){
+            tekan_tombol_berikutnya(ambil_nomor(nomor));
+        });
+    });
+
+    function cek_sisa_nomor_urut() {
+        let sisa = 0;
+        $.ajax('{{ route('ajax.antrean.cek_sisa_nomor') }}', {
+            method: 'POST',
+            data: {
+                'id_ruang': '{{ $tampil->id_ruang }}',
+                'kode_loket': '{{ $tampil->kode_loket }}',
+            }
+        }).done(function (hasil) {
+            if (hasil.status === 200) {
+                sisa = hasil.data.sisa;
+
+                sisa_antrean.text();
+                sisa_antrean.text(sisa);
+            }
+        });
+        return sisa;
+    }
+
+    function tekan_tombol_ulang(nomor_antrean) {
+        $.ajax('{{ route('ajax.antrean.ulang_antrean') }}', {
+            method: 'POST',
+            data: {
+                'id_ruang': '{{ $tampil->id_ruang }}',
+                'id_loket': '{{ $tampil->id_loket }}',
+                'nomor_antrean': nomor_antrean,
+            }
+        });
+    }
+
+    function tekan_tombol_panggil() {
+        $.ajax('{{ route('ajax.antrean.panggil_antrean') }}', {
+            method: 'POST',
+            data: {
+                'id_ruang': '{{ $tampil->id_ruang }}',
+                'id_loket': '{{ $tampil->id_loket }}',
+            }
+        }).done(function (hasil){
+            if(hasil.status === 200){
+                let nomor_tampil = hasil.data.nomor_dipanggil.toString().padStart(3, '0');
+                nomor.text();
+                nomor.text('{{ $tampil->kode_loket }}'+(nomor_tampil));
+            }
+        });
+    }
+
+    function tekan_tombol_sebelumnya(nomor_saja) {
+        if(nomor_saja !== 0){
+            let nomor_sekarang = nomor_saja - 1;
+            let nomor_tampil = nomor_sekarang.toString().padStart(3, '0');
+            nomor.text();
+            nomor.text('{{ $tampil->kode_loket }}'+(nomor_tampil));
+        }
+    }
+
+    function tekan_tombol_berikutnya(nomor_saja) {
+        let nomor_sekarang = nomor_saja + 1;
+        let nomor_tampil = nomor_sekarang.toString().padStart(3, '0');
+        nomor.text();
+        nomor.text('{{ $tampil->kode_loket }}'+(nomor_tampil));
+    }
+
+    function ambil_nomor(nomor){
+        let nomor_teks = nomor.text();
+        let nomor_saja = nomor_teks.replace('{{ $tampil->kode_loket }}', '');
+        return parseInt(nomor_saja);
+    }
+</script>
+
+@endpush

@@ -20,7 +20,6 @@
     <div class="container">
         <!-- Content -->
         <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72 z-[0]">
-
             @yield('konten')
         </div>
         <!-- End Content -->

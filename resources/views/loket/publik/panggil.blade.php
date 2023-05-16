@@ -28,21 +28,26 @@
 @section('konten')
 
 <div class="grid grid-rows-12 grid-cols-12 h-screen w-screen overflow-hidden">
-    <div class="flex p-5 items-center justify-center row-span-2 col-span-1 bg-cyan-100">
+    <div class="flex p-5 items-center justify-center row-span-2 col-span-1 bg-white">
         <img src="data:image/jpeg;base64,{{ $setting->logo }}" alt="logo" class="h-fit w-fit object-cover">
     </div>
 
-    <div class="flex flex-col p-5 items-center justify-center row-span-2 col-span-8 bg-cyan-100">
-        <div class="text-3xl 2xl:text-5xl font-bold text-blue-600">{{ $setting->nama }}</div>
+    <div class="flex flex-col p-5 items-center justify-center row-span-2 col-span-9 bg-white leading-tight">
+        <div class="text-xl 2xl:text-3xl font-bold text-black uppercase">
+            {{ $setting->nama }}
+        </div>
+        <div class="text-3xl 2xl:text-5xl font-bold text-blue-600 uppercase">
+            {{ $ruang->nama_ruang }}
+        </div>
     </div>
 
-    <div class="flex flex-col p-5 items-center justify-center row-span-2 col-span-3 bg-blue-900 text-white leading-none">
-        <span class="tanggal text-xl 2xl:text-2xl"></span>
-        <span class="jam font-bold text-6xl 2xl:text-7xl"></span>
+    <div class="flex flex-col p-5 items-center justify-center row-span-2 col-span-2 bg-blue-900 text-white leading-8">
+        <span class="tanggal text-base 2xl:text-lg"></span>
+        <span class="jam font-bold text-3xl 2xl:text-4xl"></span>
     </div>
 
-    <div class="flex p-5 items-center justify-center row-span-9 col-span-7 bg-blue-100">
-        <div class="flex flex-row h-full w-full items-center hidden begron-1 tampil-antrean">
+    <div class="flex items-center justify-center row-span-9 col-span-7">
+        <div class="flex flex-row h-full w-full items-center p-5 hidden begron-1 tampil-antrean">
             <!-- Card -->
             <div class="group flex flex-col h-40 w-[35vw] items-center justify-center z-10 begron-1">
                 <h3 class="text-4xl 2xl:text-6xl text-center font-semibold text-blue-500 leading-none grid-1">
@@ -75,9 +80,9 @@
         <!-- End Grid -->
     </div>
 
-    <div class="flex flex-col items-center justify-center row-span-9 col-span-5 bg-blue-100 h-full">
+    <div class="flex flex-col items-center justify-center row-span-9 col-span-5 h-full">
         <!-- Grid -->
-        <div class="flex flex-row h-full w-full items-center">
+        <div class="flex flex-row h-full w-full items-center baris-1 bg-white">
             <!-- Card -->
             <div class="group flex flex-col h-40 w-[25vw] items-center justify-center">
                 <h3 class="text-2xl 2xl:text-3xl text-center font-semibold text-blue-500 leading-none">
@@ -105,7 +110,7 @@
         <!-- End Grid -->
 
         <!-- Grid -->
-        <div class="flex flex-row h-full w-full items-center">
+        <div class="flex flex-row h-full w-full items-center baris-2 bg-white">
             <!-- Card -->
             <div class="group flex flex-col h-40 w-[25vw] items-center justify-center">
                 <h3 class="text-2xl 2xl:text-3xl text-center font-semibold text-blue-500 leading-none">
@@ -133,7 +138,7 @@
         <!-- End Grid -->
 
         <!-- Grid -->
-        <div class="flex flex-row h-full w-full items-center">
+        <div class="flex flex-row h-full w-full items-center baris-3 bg-white">
             <!-- Card -->
             <div class="group flex flex-col h-40 w-[25vw] items-center justify-center">
                 <h3 class="text-2xl 2xl:text-3xl text-center font-semibold text-blue-500 leading-none">
@@ -178,6 +183,9 @@
     const id_loket_grid_3 = $('#loket-grid-3');
     const id_nomor_grid_4 = $('#nomor-grid-4');
     const id_loket_grid_4 = $('#loket-grid-4');
+    const baris_1 = $('.baris-1');
+    const baris_2 = $('.baris-2');
+    const baris_3 = $('.baris-3');
 
     $(document).ready(function () {
         cek_antrean_baru();
@@ -191,7 +199,7 @@
 
     function updateTime() {
         serverTime = new Date(serverTime.getTime() + 1000);
-        $(".jam").html(serverTime.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }));
+        $(".jam").html(serverTime.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", timeZoneName: "short" }));
         $(".tanggal").html(serverTime.toLocaleString("id-ID", { dateStyle: "full" }))
     }
 
@@ -202,21 +210,19 @@
     }
 
     function cek_antrean_baru() {
-        $.ajax('/ajax/uji').done(async function (data) {
-            if(data.is_nomor_baru === true){
-                let huruf = data.data.kode_loket;
-                let nomor = data.data.nomor_antrean;
-                let loket = data.data.nomor_loket;
+        $.ajax('{{ route('ajax.antrean.cek_nomor_baru',last(explode('/',url()->current()))) }}').done(async function (hasil) {
+            if(hasil.status === 200){
+                let huruf = hasil.data.kode_loket;
+                let nomor = hasil.data.nomor_antrean;
+                let loket = hasil.data.nomor_loket;
+                let warna = hasil.data.warna;
 
-                console.log('Antrean baru diterima');
                 tampilkan_nomor_sekarang(huruf, nomor, loket);
                 buat_kedipan();
                 await putar_suara_nomor_loket(huruf, nomor, loket);
-                pindahkan_antrean_lama_ke_bawah();
+                pindahkan_antrean_lama_ke_bawah(warna);
             }
-            else {
-                console.log('Tidak ada antrean baru');
-            }
+            console.log(hasil);
         });
     }
 
@@ -240,7 +246,7 @@
         $('.begron-1').removeClass('begron-kedip');
     }
 
-    function pindahkan_antrean_lama_ke_bawah(){
+    function pindahkan_antrean_lama_ke_bawah(warna_baru){
         let nomor_grid_1 = id_nomor_grid_1.text().trim();
         let loket_grid_1 = id_loket_grid_1.text().trim();
         let nomor_grid_2 = id_nomor_grid_2.text().trim();
@@ -248,12 +254,26 @@
         let nomor_grid_3 = id_nomor_grid_3.text().trim();
         let loket_grid_3 = id_loket_grid_3.text().trim();
 
+        let class_baris_1 = baris_1.attr('class').split(' ');
+        let warna_baris_1 = class_baris_1[class_baris_1.length - 1];
+        let class_baris_2 = baris_2.attr('class').split(' ');
+        let warna_baris_2 = class_baris_2[class_baris_2.length - 1];
+        let class_baris_3 = baris_3.attr('class').split(' ');
+        let warna_baris_3 = class_baris_3[class_baris_3.length - 1];
+
         id_nomor_grid_4.text(nomor_grid_3);
         id_loket_grid_4.text(loket_grid_3);
         id_nomor_grid_3.text(nomor_grid_2);
         id_loket_grid_3.text(loket_grid_2);
         id_nomor_grid_2.text(nomor_grid_1);
         id_loket_grid_2.text(loket_grid_1);
+
+        baris_1.removeClass(warna_baris_1);
+        baris_1.addClass(warna_baru)
+        baris_2.removeClass(warna_baris_2);
+        baris_2.addClass(warna_baris_1);
+        baris_3.removeClass(warna_baris_3);
+        baris_3.addClass(warna_baris_2);
     }
 
     async function putar_suara_nomor_loket(huruf, nomor, loket){

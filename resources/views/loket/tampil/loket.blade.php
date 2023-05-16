@@ -19,8 +19,20 @@
         @foreach($loket as $l)
             <!-- Card -->
             <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl   ">
-                <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
-                    <span class="text-8xl font-bold">{{ $l->nomor_loket }}</span>
+                <div class="h-36 flex flex-col bg-blue-500 rounded-t-xl text-white">
+                    @if($l->bpjs !== 0)
+                        <div class="relative">
+                            <span class="absolute top-0 right-0 rounded-tr-xl rounded-bl-xl text-xs font-medium text-white py-1.5 px-3 @if($l->bpjs === 1) bg-green-700">
+                                Khusus BPJS</span>
+                            @else
+                                bg-yellow-500">
+                                Umum & BPJS</span>
+                            @endif
+                        </div>
+                    @endif
+                    <div class="text-center">
+                        <span class="text-8xl font-bold">{{ $l->nomor_loket }}</span>
+                    </div>
                 </div>
                 <div class="p-4 md:p-6 hover:bg-blue-200 hover:rounded-b-xl">
                     <a href="{{ route('admin.loket.tampil.tampil',strtoupper($l->uuid)) }}">

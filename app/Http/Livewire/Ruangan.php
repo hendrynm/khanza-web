@@ -27,18 +27,16 @@ class Ruangan extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('ID Ruang', 'id_ruang'),
             Column::make('Nama Ruang', 'nama_ruang'),
             Column::make('Foto', 'foto')
                 ->format(fn ($value) => view('livewire.loket.ruang.gambar', ['gambar' => base64_encode($value)])),
             Column::make('Aksi', 'uuid')
-                ->format(fn ($value) => view('livewire.loket.ruang.ubah_hapus', ['uuid' => $value])),
+                ->format(fn ($value) => view('livewire.loket.ruang.aksi', ['uuid' => $value])),
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
-        return AntreanRuangan::query();
+        return AntreanRuangan::orderBy('nama_ruang');
     }
-
 }

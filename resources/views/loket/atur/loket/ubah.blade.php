@@ -1,11 +1,11 @@
 @extends('_master.app')
 @section('fitur', 'Loket')
-@section('menu', 'Tambah Ruangan Baru')
+@section('menu', 'Ubah Loket')
 @section('konten')
 
 <!-- Page Heading -->
 <header>
-    <h1 class="text-4xl font-bold text-blue-600">Tambah Ruangan Baru</h1>
+    <h1 class="text-4xl font-bold text-blue-600">Ubah Loket</h1>
     <p class="mt-2 text-lg text-gray-800 ">
         Silakan mengisi <b>formulir</b> di bawah untuk melanjutkan.
     </p>
@@ -23,12 +23,12 @@
                     Panduan Pengisian
                 </h2>
 
-                <x-panduan-loket-ruangan/>
+                <x-panduan-loket-loket/>
             </div>
 
             <div class="bg-blue-100 p-10">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <x-loket-ruangan/>
+                <form action="" method="post">
+                    <x-loket-loket :ruang="$ruang" :warna="$warna" :loket="$loket"/>
                 </form>
             </div>
         </div>
