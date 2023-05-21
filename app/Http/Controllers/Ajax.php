@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Services\AntriLoket;
+use App\Services\NotifikasiService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class Ajax extends Controller
 {
     public AntriLoket $antriLoket;
+    public NotifikasiService $notifikasiService;
 
     public function __construct(){
         $this->antriLoket = new AntriLoket();
+        $this->notifikasiService = new NotifikasiService();
     }
 
     public function cek_nomor_baru(string $uuid_ruangan): JsonResponse
@@ -109,6 +112,18 @@ class Ajax extends Controller
         return response()->json([
             'status' => 201,
             'message' => 'Nomor antrean berhasil diulangi',
+            'timestamp' => date('d-m-Y h.i.s',time()),
+        ]);
+    }
+
+    public function notifikasi_uji(): JsonResponse
+    {
+        $pesan = $this->notifikasiService->beranda();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data notifikasi berhasil diambil',
+            'data' => $pesan,
             'timestamp' => date('d-m-Y h.i.s',time()),
         ]);
     }

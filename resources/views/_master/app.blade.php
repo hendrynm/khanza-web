@@ -51,6 +51,9 @@
                 case('#select-tindakan'):
                     $(nama_fitur_low).addClass('text-red-500');
                     break;
+                case('#select-notifikasi'):
+                    $(nama_fitur_low).addClass('text-purple-500');
+                    break;
             }
             $(nama_fitur_low).addClass('bg-gray-100');
         });

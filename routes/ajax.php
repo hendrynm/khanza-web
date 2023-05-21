@@ -12,4 +12,8 @@ Route::prefix('/')->name('ajax.')->controller(Ajax::class)->group(function (){
         Route::post('/panggil_antrean', 'panggil_antrean')->name('panggil_antrean');
         Route::post('/ulang_antrean', 'ulang_antrean')->name('ulang_antrean');
     });
+
+    Route::prefix('/notifikasi')->name('notifikasi.')->group(function (){
+        Route::get('/uji', 'notifikasi_uji')->name('uji');
+    });
 });

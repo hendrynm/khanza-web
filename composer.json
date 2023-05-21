@@ -6,6 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-fileinfo": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.2",
         "illuminate/contracts": "*",
         "laravel/framework": "^10.0",
@@ -15,7 +19,7 @@
         "rappasoft/laravel-livewire-tables": "^2.12",
         "spatie/laravel-package-tools": "^1.15",
         "timwassenburg/laravel-service-generator": "^1.0",
-        "ext-fileinfo": "*"
+        "twilio/sdk": "^7.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\General;
 use App\Http\Controllers\Loket;
+use App\Http\Controllers\Notifikasi;
 use App\Http\Controllers\RekamMedis;
 use App\Http\Controllers\Reservasi;
 use App\Http\Controllers\Tindakan;
@@ -70,12 +71,17 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::prefix('rekam')->name('rekam_medis.')->controller(RekamMedis::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
-        Route::get('/profil', 'profil')->name('profil');
+        Route::get('/profil/{nomor_medis}', 'profil')->name('profil');
+        Route::get('/detail/{nomor_medis}/{nomor_rawat}', 'detail')->name('detail');
     });
 
     Route::prefix('tindakan')->name('tindakan.')->controller(Tindakan::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
         Route::get('/tindakan', 'tindakan')->name('tindakan');
+    });
+
+    Route::prefix('notifikasi')->name('notifikasi.')->controller(Notifikasi::class)->group(function (){
+        Route::get('/', 'beranda')->name('beranda');
     });
 
     Route::get('/keluar', [General::class, 'keluar'])->name('keluar');
