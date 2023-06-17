@@ -27,6 +27,8 @@
 @yield('modal')
 
 <!-- ========== END MAIN CONTENT ========== -->
+@livewireScripts
+
 @vite('resources/js/app.js')
 
 @stack('script')

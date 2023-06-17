@@ -15,8 +15,7 @@
 <div>
     <!-- Card Section -->
     <div class="max-w-[85rem] px-4 pt-10 pb-5 sm:px-6 lg:px-8 lg:pt-10 lg:pb-5 mx-auto">
-        <button onclick="window.location.href='{{ route('ajax.notifikasi.uji') }}'"
-            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+        <button id="kirim-pesan" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
             Kirim Pesan
         </button>
     </div>
@@ -24,3 +23,19 @@
 </div>
 
 @endsection
+
+@push('script')
+<script type="module">
+    $(document).ready(function() {
+        $('#kirim-pesan').on('click', function() {
+            $.ajax({
+                url: "{{ route('ajax.notifikasi.uji') }}",
+                type: "GET",
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        })
+    });
+</script>
+@endpush

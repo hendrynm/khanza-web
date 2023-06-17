@@ -25,13 +25,13 @@
                         <?php
                         $sebelum = $i - 1;
                         $setelah = $i + 1;
-                        $url = explode('/', url()->current());
+                        $url = request()->segments();
                         $panjang = count($url) - 2;
                         $arr_periksa = (array)$periksa;
                         $data_sebelum = $sebelum >= 0 ? $arr_periksa[$sebelum] : null;
                         $data_setelah = $setelah < count($arr_periksa) ? $arr_periksa[$setelah] : null;
                         ?>
-                    @if(last(explode('/',url()->current())) === base64_encode($p->nomor_rawat))
+                    @if(last(request()->segments()) === base64_encode($p->nomor_rawat))
                         <div class="mt-3 text-md font-medium text-gray-700">
                             {{ (new IntlDateFormatter("id_ID",IntlDateFormatter::FULL,IntlDateFormatter::SHORT,"Asia/Jakarta",IntlDateFormatter::GREGORIAN,"eeee, dd MMMM yyyy 'pukul' HH.mm z"))->format(new DateTime($p->tanggal_registrasi .' '. $p->jam_registrasi)) }}
                         </div>

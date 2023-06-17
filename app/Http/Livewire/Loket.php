@@ -11,6 +11,9 @@ class Loket extends DataTableComponent
 {
     protected $model = AntreanLoket::class;
     public string $uuid;
+    private const TABEL_RUANGAN = 'web_plus_umum_ruangan';
+    private const TABEL_WARNA = 'web_plus_antrean_warna';
+    private const TABEL_LOKET = 'web_plus_antrean_loket';
 
     public function mount(string $uuid): void
     {
@@ -47,9 +50,9 @@ class Loket extends DataTableComponent
 
     public function builder(): Builder
     {
-        return AntreanLoket::join('web_plus_antrean_warna', 'web_plus_antrean_loket.id_warna', '=', 'web_plus_antrean_warna.id_warna')
-            ->join('web_plus_antrean_ruangan', 'web_plus_antrean_loket.id_ruang', '=', 'web_plus_antrean_ruangan.id_ruang')
-            ->where('web_plus_antrean_ruangan.uuid', $this->uuid)
-            ->orderBy('web_plus_antrean_loket.nomor_loket');
+        return AntreanLoket::join(self::TABEL_WARNA, self::TABEL_LOKET . '.id_warna', '=', self::TABEL_WARNA . '.id_warna')
+            ->join(self::TABEL_RUANGAN, self::TABEL_LOKET . '.id_ruang', '=', self::TABEL_RUANGAN . '.id_ruang')
+            ->where(self::TABEL_RUANGAN . '.uuid', $this->uuid)
+            ->orderBy(self::TABEL_LOKET . '.nomor_loket');
     }
 }

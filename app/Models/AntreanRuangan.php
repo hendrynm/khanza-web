@@ -9,11 +9,13 @@ class AntreanRuangan extends Model
 {
     use HasFactory;
 
-    protected $table = 'web_plus_antrean_ruangan';
+    protected $table = 'web_plus_umum_ruangan';
 
     protected $fillable = [
         'id_ruang',
         'nama_ruang',
+        'loket',
+        'reservasi',
         'foto',
         'uuid'
     ];

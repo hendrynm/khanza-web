@@ -11,7 +11,7 @@
 }
 
 .fc-event {
-    @apply absolute inset-0 flex flex-col overflow-y-auto rounded-lg bg-amber-100 p-2 text-sm leading-5 hover:bg-amber-200 border-none !important
+    @apply absolute inset-0 flex flex-col overflow-y-auto rounded-lg bg-amber-100 p-2 -ml-0.5 -mr-1 text-sm leading-5 hover:bg-amber-200 border-0 border-none !important
 }
 
 .fc-event-time {

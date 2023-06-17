@@ -929,4 +929,18 @@ class RekamMedisService
         }
         return $hasil_objek;
     }
+
+    public function getDetailDokter(string $kode_dokter): array
+    {
+        $dokter = DB::table(self::TABEL_DOKTER_BAWAAN)
+            ->select(['kd_dokter', 'nm_dokter'])
+            ->where('kd_dokter', '=', $kode_dokter)
+            ->first();
+
+        $hasil = [];
+        $hasil['kode_dokter'] = $dokter->kd_dokter;
+        $hasil['nama_dokter'] = $dokter->nm_dokter;
+
+        return $hasil;
+    }
 }

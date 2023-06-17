@@ -28,7 +28,7 @@
 
             <div class="bg-blue-100 p-10">
                 <form action="" method="post">
-                    <x-loket-ruangan :ruang="$ruang"/>
+                    <x-loket-ruangan :warna="'blue'" :ruang="$ruang"/>
                     <input type="hidden" name="type" value="update">
                 </form>
             </div>
@@ -39,3 +39,13 @@
 </div>
 
 @endsection
+
+@push('script')
+    <script type="module">
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('toggle', () => ({
+                checked: false,
+            }));
+        });
+    </script>
+@endpush

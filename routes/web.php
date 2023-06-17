@@ -61,8 +61,37 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::prefix('reservasi')->name('reservasi.')->controller(Reservasi::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
-        Route::get('/tujuan', 'tujuan')->name('tujuan');
-        Route::get('/jadwal', 'jadwal')->name('jadwal');
+
+        Route::prefix('pasien')->name('pasien.')->group(function (){
+            Route::get('/', 'pasien_beranda')->name('beranda');
+            Route::get('/{nomor_medis}', 'pasien_tujuan')->name('tujuan');
+            Route::get('/{nomor_medis}/tujuan/{uuid}', 'pasien_jadwal')->name('jadwal');
+        });
+
+        Route::prefix('registrasi')->name('registrasi.')->group(function (){
+            Route::get('/', 'registrasi_beranda')->name('beranda');
+            Route::get('/daftar/{nomor_medis}', 'registrasi_daftar')->name('daftar');
+            Route::post('/konfirmasi','registrasi_konfirmasi')->name('konfirmasi');
+            Route::post('/konfirmasi/simpan','registrasi_konfirmasi_simpan')->name('konfirmasi.simpan');
+        });
+
+        Route::prefix('atur')->name('atur.')->group(function (){
+            Route::get('/', 'atur_beranda')->name('beranda');
+            Route::get('/tambah', 'atur_tambah')->name('tambah');
+            Route::post('/tambah', 'atur_tambah_post')->name('tambah.post');
+            Route::get('/ubah/{uuid}', 'atur_ubah')->name('ubah');
+            Route::post('/ubah/{uuid}', 'atur_ubah_post')->name('ubah.post');
+            Route::get('/hapus/{uuid}', 'atur_hapus')->name('hapus');
+        });
+
+        Route::prefix('dokter')->name('dokter.')->group(function (){
+            Route::get('/{uuid_ruang}', 'dokter_beranda')->name('beranda');
+            Route::get('/{uuid_ruang}/tambah', 'dokter_tambah')->name('tambah');
+            Route::post('/{uuid_ruang}/tambah', 'dokter_tambah_post')->name('tambah.post');
+            Route::get('/{uuid_ruang}/ubah/{uuid_jadwal}', 'dokter_ubah')->name('ubah');
+            Route::post('/{uuid_ruang}/ubah/{uuid_jadwal}', 'dokter_ubah_post')->name('ubah.post');
+            Route::get('/{uuid_ruang}/hapus/{uuid_jadwal}', 'dokter_hapus')->name('hapus');
+        });
 
         Route::get('/daftar', 'daftar')->name('daftar');
     });

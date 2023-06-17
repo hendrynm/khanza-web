@@ -210,7 +210,7 @@
     }
 
     function cek_antrean_baru() {
-        $.ajax('{{ route('ajax.antrean.cek_nomor_baru',last(explode('/',url()->current()))) }}').done(async function (hasil) {
+        $.ajax('{{ route('ajax.antrean.cek_nomor_baru',last(request()->segments())) }}').done(async function (hasil) {
             if(hasil.status === 200){
                 let huruf = hasil.data.kode_loket;
                 let nomor = hasil.data.nomor_antrean;

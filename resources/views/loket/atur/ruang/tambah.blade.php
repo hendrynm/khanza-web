@@ -28,7 +28,7 @@
 
             <div class="bg-blue-100 p-10">
                 <form action="" method="post" enctype="multipart/form-data">
-                    <x-loket-ruangan/>
+                    <x-loket-ruangan :warna="'blue'"/>
                 </form>
             </div>
         </div>
@@ -38,3 +38,13 @@
 </div>
 
 @endsection
+
+@push('script')
+<script type="module">
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('toggle', () => ({
+            checked: false,
+        }));
+    });
+</script>
+@endpush

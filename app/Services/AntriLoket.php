@@ -5,13 +5,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 use stdClass;
 
 class AntriLoket
 {
     private const TABEL_NOMOR_ANTREAN_BAWAAN = 'antriloket';
     private const TABEL_NOMOR_ANTREAN_BARU = 'web_plus_antrean_nomor';
-    private const TABEL_RUANGAN = 'web_plus_antrean_ruangan';
+    private const TABEL_RUANGAN = 'web_plus_umum_ruangan';
     private const TABEL_NOMOR_LOKET = 'web_plus_antrean_loket';
     private const TABEL_AMBIL_NOMOR = 'web_plus_antrean_ambil';
     private const TABEL_WARNA = 'web_plus_antrean_warna';
@@ -51,15 +52,18 @@ class AntriLoket
     public function setDaftarRuangan(Request $request): bool
     {
         $nama_ruang = $request->nama_ruang;
+        $loket = $request->loket;
+        $reservasi = $request->reservasi;
         $type = $request->type;
         $uuid = $request->uuid ?? Str::uuid();
-        $foto = null;
         $file = $request->file('foto');
 
         if ($file) {
-            $handle = $file->openFile();
-            $size = $file->getSize();
-            $foto = $handle->fread($size);
+            $image = Image::make($file);
+            $kompres = $image->encode('jpg', 75);
+            $foto = $kompres->getEncoded();
+        } else {
+            $foto = null;
         }
 
         return ($type === 'update') ? (
@@ -68,17 +72,23 @@ class AntriLoket
                     ->where('uuid','=', $uuid)
                     ->update([
                         'nama_ruang' => $nama_ruang,
+                        'loket' => $loket,
+                        'reservasi' => $reservasi,
                         ]) :
                 DB::table(self::TABEL_RUANGAN)
                     ->where('uuid','=', $uuid)
                     ->update([
                         'nama_ruang' => $nama_ruang,
+                        'loket' => $loket,
+                        'reservasi' => $reservasi,
                         'foto' => $foto,
                     ])
             ) :
             DB::table(self::TABEL_RUANGAN)
                 ->insert([
                     'nama_ruang' => $nama_ruang,
+                    'loket' => $loket,
+                    'reservasi' => $reservasi,
                     'foto' => $foto,
                     'uuid' => $uuid,
                 ]);

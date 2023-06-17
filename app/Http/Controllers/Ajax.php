@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\AntriLoket;
 use App\Services\NotifikasiService;
+use App\Services\ReservasiService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,12 @@ class Ajax extends Controller
 {
     public AntriLoket $antriLoket;
     public NotifikasiService $notifikasiService;
+    public ReservasiService $reservasiService;
 
     public function __construct(){
         $this->antriLoket = new AntriLoket();
         $this->notifikasiService = new NotifikasiService();
+        $this->reservasiService = new ReservasiService();
     }
 
     public function cek_nomor_baru(string $uuid_ruangan): JsonResponse
@@ -70,7 +73,7 @@ class Ajax extends Controller
             'status' => 200,
             'message' => 'Nomor antrean terakhir berhasil diambil',
             'data' => $nomor,
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s', time()),
         ]);
     }
 
@@ -116,9 +119,34 @@ class Ajax extends Controller
         ]);
     }
 
+    public function cek_ketersediaan_dokter(Request $request): JsonResponse
+    {
+        $uuid_ruang = $request->uuid_ruang;
+        $kode_dokter = $request->kode_dokter;
+        $tersedia = $this->reservasiService->getJadwalDokterTersedia($uuid_ruang, $kode_dokter);
+        $penuh = $this->reservasiService->getJadwalDokterTerisi($uuid_ruang, $kode_dokter);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data jadwal dokter tersedia berhasil diambil',
+            'data' => [
+                'tersedia' => $tersedia,
+                'penuh' => $penuh,
+            ],
+            'timestamp' => date('d-m-Y h.i.s',time()),
+        ]);
+    }
+
     public function notifikasi_uji(): JsonResponse
     {
-        $pesan = $this->notifikasiService->beranda();
+        $nomor_tujuan = '85331303015';
+        $nama_pasien = 'Maribel Hendry Naufal';
+        $tanggal = '13 Mei 2023';
+        $waktu = '09.15 WIB';
+        $lokasi = 'Poliklinik Gigi dan Mulut';
+        $tautan = 'https://khanza-plus.tekan.id/admin/reservasi';
+
+        $pesan = $this->notifikasiService->setKirimPengingatReservasi($nomor_tujuan, $nama_pasien, $tanggal, $waktu, $lokasi, $tautan);
 
         return response()->json([
             'status' => 200,

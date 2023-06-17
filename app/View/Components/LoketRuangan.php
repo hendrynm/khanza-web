@@ -10,13 +10,15 @@ use stdClass;
 class LoketRuangan extends Component
 {
     public stdClass $ruang;
+    public string $warna;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(stdClass $ruang)
+    public function __construct(stdClass $ruang, string $warna)
     {
         $this->ruang = $ruang;
+        $this->warna = $warna;
     }
 
     /**
@@ -26,6 +28,7 @@ class LoketRuangan extends Component
     {
         return view('components.loket-ruangan',[
             'ruang' => $this->ruang,
+            'warna' => $this->warna
         ]);
     }
 }
