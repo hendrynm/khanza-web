@@ -217,4 +217,31 @@ class Reservasi extends Controller
             ]);
         }
     }
+
+    public function registrasi_hapus(string $uuid): RedirectResponse
+    {
+        $this->reservasiService->deleteJadwalPasien($uuid);
+
+        return redirect()->route('admin.reservasi.beranda');
+    }
+
+    public function simpan_beranda(): View
+    {
+        $ruang = $this->reservasiService->getDaftarRuangan();
+
+        return view('reservasi.simpan.beranda', [
+            'ruang' => $ruang
+        ]);
+    }
+
+    public function simpan_detail(string $uuid_ruang): View
+    {
+        $ruang = $this->reservasiService->getDetailRuangan($uuid_ruang);
+        $pasien = $this->reservasiService->getDaftarPasien();
+
+        return view('reservasi.simpan.detail', [
+            'ruang' => $ruang,
+            'pasien' => $pasien
+        ]);
+    }
 }

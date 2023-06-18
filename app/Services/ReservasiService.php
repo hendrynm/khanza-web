@@ -207,9 +207,35 @@ class ReservasiService
         return $hasil_objek;
     }
 
-    public function getJadwalDokterTerisi(string $uuid_ruang, string $kode_dokter): stdClass
+    public function getJadwalDokterTerisi(string $uuid_ruang, string $kode_dokter, bool $is_dokter): stdClass
     {
         $id_ruang = $this->getKodeRuang($uuid_ruang);
+        if($is_dokter)
+        {
+            $jadwal = DB::table(self::TABEL_JADWAL_PASIEN)
+                ->join(self::TABEL_PASIEN_BAWAAN, self::TABEL_JADWAL_PASIEN.'.nomor_medis', '=', self::TABEL_PASIEN_BAWAAN.'.no_rkm_medis')
+                ->where('id_ruang', '=', $id_ruang)
+                ->where('id_dokter', '=', $kode_dokter)
+                ->whereDate('tanggal', '>=', date('Y-m-d'))
+                ->whereDate('tanggal', '<=', date('Y-m-d', strtotime('+1 week')))
+                ->get();
+
+            $hasil = [];
+            $hasil_objek = new stdClass();
+            foreach ($jadwal as $i => $j) {
+                $hasil[$i] = [];
+                $hasil[$i]['uuid'] = $j->uuid;
+                $hasil[$i]['id_dokter'] = $j->id_dokter;
+                $hasil[$i]['tanggal'] = $j->tanggal;
+                $hasil[$i]['waktu_mulai'] = $j->waktu_mulai;
+                $hasil[$i]['waktu_selesai'] = $j->waktu_selesai;
+                $hasil[$i]['nomor_medis'] = $j->no_rkm_medis;
+                $hasil[$i]['nama_pasien'] = $j->nm_pasien;
+
+                $hasil_objek->$i = (object)$hasil[$i];
+            }
+            return $hasil_objek;
+        }
         $jadwal = DB::table(self::TABEL_JADWAL_PASIEN)
             ->where('id_ruang', '=', $id_ruang)
             ->where('id_dokter', '=', $kode_dokter)
@@ -290,5 +316,12 @@ class ReservasiService
                 ]);
         }
         return false;
+    }
+
+    public function deleteJadwalPasien(string $uuid): bool
+    {
+        return DB::table(self::TABEL_JADWAL_PASIEN)
+            ->where('uuid', '=', $uuid)
+            ->delete();
     }
 }

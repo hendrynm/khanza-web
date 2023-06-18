@@ -123,8 +123,10 @@ class Ajax extends Controller
     {
         $uuid_ruang = $request->uuid_ruang;
         $kode_dokter = $request->kode_dokter;
+        $is_dokter = $request->is_dokter ?? false;
+
         $tersedia = $this->reservasiService->getJadwalDokterTersedia($uuid_ruang, $kode_dokter);
-        $penuh = $this->reservasiService->getJadwalDokterTerisi($uuid_ruang, $kode_dokter);
+        $penuh = $this->reservasiService->getJadwalDokterTerisi($uuid_ruang, $kode_dokter, $is_dokter);
 
         return response()->json([
             'status' => 200,

@@ -73,6 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
             Route::get('/daftar/{nomor_medis}', 'registrasi_daftar')->name('daftar');
             Route::post('/konfirmasi','registrasi_konfirmasi')->name('konfirmasi');
             Route::post('/konfirmasi/simpan','registrasi_konfirmasi_simpan')->name('konfirmasi.simpan');
+            Route::get('/hapus/{uuid}', 'registrasi_hapus')->name('hapus');
         });
 
         Route::prefix('atur')->name('atur.')->group(function (){
@@ -91,6 +92,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
             Route::get('/{uuid_ruang}/ubah/{uuid_jadwal}', 'dokter_ubah')->name('ubah');
             Route::post('/{uuid_ruang}/ubah/{uuid_jadwal}', 'dokter_ubah_post')->name('ubah.post');
             Route::get('/{uuid_ruang}/hapus/{uuid_jadwal}', 'dokter_hapus')->name('hapus');
+        });
+
+        Route::prefix('/simpan')->name('simpan.')->group(function (){
+            Route::get('/', 'simpan_beranda')->name('beranda');
+            Route::get('/{uuid}', 'simpan_detail')->name('detail');
         });
 
         Route::get('/daftar', 'daftar')->name('daftar');

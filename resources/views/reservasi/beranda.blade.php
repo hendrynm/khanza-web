@@ -57,6 +57,26 @@
         <!-- End Card -->
 
         <!-- Card -->
+        <div class="group flex flex-col h-full bg-amber-100 border border-gray-200 shadow-sm rounded-xl">
+            <div class="h-60 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40 h-40">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                </svg>
+            </div>
+            <div class="p-4 md:p-6 hover:bg-amber-200 hover:rounded-b-xl">
+                <a href="{{ route('admin.reservasi.simpan.beranda') }}">
+                    <h3 class="text-2xl text-center font-semibold text-amber-500">
+                        Lihat Reservasi Pasien
+                    </h3>
+                    <p class="mt-3 text-center text-gray-500">
+                        Lihat daftar reservasi yang telah dibuat oleh pasien.
+                    </p>
+                </a>
+            </div>
+        </div>
+        <!-- End Card -->
+
+        <!-- Card -->
         <div class="group flex flex-col h-full bg-slate-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-60 flex flex-col justify-center items-center bg-slate-500 rounded-t-xl text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40 h-40">
