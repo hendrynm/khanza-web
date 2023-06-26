@@ -112,7 +112,16 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::prefix('tindakan')->name('tindakan.')->controller(Tindakan::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
-        Route::get('/tindakan', 'tindakan')->name('tindakan');
+        Route::get('/pilih', 'pilih')->name('pilih');
+
+        Route::prefix('/jadwal')->name('jadwal.')->group(function (){
+            Route::get('/{nomor_medis}', 'jadwal_beranda')->name('beranda');
+            Route::get('/{nomor_medis}/ruang/{uuid}', 'jadwal_ruang')->name('ruang');
+            Route::post('/konfirmasi', 'jadwal_konfirmasi')->name('konfirmasi');
+            Route::post('/konfirmasi/simpan', 'jadwal_konfirmasi_simpan')->name('konfirmasi.simpan');
+        });
+
+        Route::get('/detail', 'detail')->name('detail');
     });
 
     Route::prefix('notifikasi')->name('notifikasi.')->controller(Notifikasi::class)->group(function (){

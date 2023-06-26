@@ -29,7 +29,7 @@ class Ajax extends Controller
             return response()->json([
                 'status' => 204,
                 'message' => 'Tidak ada nomor baru diterima',
-                'timestamp' => date('d-m-Y h.i.s',time()),
+                'timestamp' => date('d-m-Y h.i.s'),
             ]);
         }
 
@@ -44,7 +44,7 @@ class Ajax extends Controller
                 'nomor_antrean' => sprintf('%03d',$antri->nomor_antrean),
                 'warna' => 'bg-'.$antri->warna,
             ],
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
@@ -61,7 +61,7 @@ class Ajax extends Controller
             'data' => [
                 'sisa' => $sisa,
             ],
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
@@ -73,7 +73,7 @@ class Ajax extends Controller
             'status' => 200,
             'message' => 'Nomor antrean terakhir berhasil diambil',
             'data' => $nomor,
-            'timestamp' => date('d-m-Y h.i.s', time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
@@ -88,7 +88,7 @@ class Ajax extends Controller
         return response()->json([
             'status' => 201,
             'message' => 'Nomor antrean berhasil disimpan',
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
@@ -104,7 +104,7 @@ class Ajax extends Controller
             'data' => [
                 'nomor_dipanggil' => $panggil->nomor_antrean,
             ],
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
@@ -115,7 +115,7 @@ class Ajax extends Controller
         return response()->json([
             'status' => 201,
             'message' => 'Nomor antrean berhasil diulangi',
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
@@ -135,11 +135,11 @@ class Ajax extends Controller
                 'tersedia' => $tersedia,
                 'penuh' => $penuh,
             ],
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 
-    public function notifikasi_uji(): JsonResponse
+    public function kirim_reservasi(): JsonResponse
     {
         $nomor_tujuan = '85331303015';
         $nama_pasien = 'Maribel Hendry Naufal';
@@ -154,7 +154,27 @@ class Ajax extends Controller
             'status' => 200,
             'message' => 'Data notifikasi berhasil diambil',
             'data' => $pesan,
-            'timestamp' => date('d-m-Y h.i.s',time()),
+            'timestamp' => date('d-m-Y h.i.s'),
+        ]);
+    }
+
+    public function kirim_rekap(): JsonResponse
+    {
+        $nomor_tujuan = '85331303015';
+        $tanggal = '13 Mei 2023';
+        $waktu = '09.15 WIB';
+        $lokasi = 'Poliklinik Gigi dan Mulut';
+        $diagnosa = 'Gigi berlubang';
+        $tindakan = 'Tambal gigi';
+        $tautan = 'https://khanza-plus.tekan.id/admin/reservasi';
+
+        $pesan = $this->notifikasiService->setKirimRekapPengobatan($nomor_tujuan, $tanggal, $tanggal, $waktu, $lokasi, $diagnosa, $tindakan, $tautan);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data notifikasi berhasil diambil',
+            'data' => $pesan,
+            'timestamp' => date('d-m-Y h.i.s'),
         ]);
     }
 }

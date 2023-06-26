@@ -18,6 +18,7 @@ Route::prefix('/')->name('ajax.')->controller(Ajax::class)->group(function (){
     });
 
     Route::prefix('/notifikasi')->name('notifikasi.')->group(function (){
-        Route::get('/uji', 'notifikasi_uji')->name('uji');
+        Route::get('/reservasi', 'kirim_reservasi')->name('reservasi');
+        Route::get('/rekap', 'kirim_rekap')->name('rekap');
     });
 });

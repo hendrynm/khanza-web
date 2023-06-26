@@ -8,7 +8,7 @@
 <header>
     <h1 class="text-4xl font-bold text-amber-600">Riwayat Registrasi Dokter</h1>
     <p class="mt-2 text-lg text-gray-800">
-        Silakan mengisi <b>formulir</b> di bawah untuk melanjutkan.
+        Silakan melihat <b>data</b> di bawah untuk melanjutkan.
     </p>
 </header>
 <!-- End Page Heading -->
