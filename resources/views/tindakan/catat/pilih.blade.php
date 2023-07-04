@@ -1,6 +1,6 @@
 @extends('_master.app')
 @section('fitur', 'Tindakan')
-@section('menu', 'Pilih Pasien')
+@section('menu', 'Pilih Pasien Catat')
 @section('konten')
 
 <!-- Page Heading -->
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="p-4 hover:bg-red-200 hover:rounded-b-xl">
-                    <a href="{{ route('admin.tindakan.jadwal.beranda',base64_encode($p->nomor_medis)) }}">
+                    <a href="{{ route('admin.tindakan.catat.beranda',base64_encode($p->nomor_medis)) }}">
                         <h3 class="text-sm text-center font-semibold text-red-500">
                             Pilih
                         </h3>

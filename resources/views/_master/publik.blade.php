@@ -26,6 +26,8 @@
 
 @yield('modal')
 
+@include('sweetalert::alert')
+
 <!-- ========== END MAIN CONTENT ========== -->
 @livewireScripts
 

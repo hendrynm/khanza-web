@@ -18,6 +18,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
         "rappasoft/laravel-livewire-tables": "^2.12",
+        "realrashid/sweet-alert": "^7.0",
         "spatie/laravel-package-tools": "^1.15",
         "timwassenburg/laravel-service-generator": "^1.0",
         "twilio/sdk": "^7.3"

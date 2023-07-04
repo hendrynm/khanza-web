@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Services\RekamMedisService;
 use App\Services\ReservasiService;
 use App\Services\TindakanService;
+use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Tindakan extends Controller
 {
@@ -27,11 +29,11 @@ class Tindakan extends Controller
         return view('tindakan.beranda');
     }
 
-    public function pilih(): View
+    public function jadwal_pilih(): View
     {
         $pasien = $this->reservasiService->getDaftarPasien();
 
-        return view('tindakan.pilih', ['pasien' => $pasien]);
+        return view('tindakan.jadwal.pilih', ['pasien' => $pasien]);
     }
 
     public function detail(): View
@@ -98,6 +100,39 @@ class Tindakan extends Controller
                 'nomor_medis' => base64_encode($request->nomor_medis),
                 'uuid' => $request->uuid_ruang
             ]);
+        }
+    }
+
+    public function catat_pilih(): View
+    {
+        $pasien = $this->rekamMedisService->getDaftarPasien();
+
+        return view('tindakan.catat.pilih', ['pasien' => $pasien]);
+    }
+
+    public function catat_beranda(string $nomor_medis): View|RedirectResponse
+    {
+        $catat = $this->tindakanService->cekSudahRegistrasi(base64_decode($nomor_medis));
+
+        if ($catat === null)
+        {
+            toast('Data pendaftaran pasien tidak ditemukan', 'error');
+            return redirect()->route('admin.tindakan.catat.pilih');
+
+        }
+        return view('tindakan.catat.beranda', ['catat' => $catat]);
+    }
+
+    public function catat_simpan(Request $request): RedirectResponse
+    {
+        $cek = $this->tindakanService->setCatatanMedis($request);
+
+        if ($cek) {
+            toast('Data berhasil disimpan', 'success');
+            return redirect()->route('admin.tindakan.beranda');
+        } else {
+            toast('Data gagal disimpan, silakan diulang', 'error');
+            return redirect()->back();
         }
     }
 }

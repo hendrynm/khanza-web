@@ -249,7 +249,7 @@
                                                 @endif
 
                                                 <span class="inline-flex items-center ml-3 py-1 px-3 rounded-full text-xs font-medium bg-blue-200 text-blue-800">
-                                                    {{ (new IntlDateFormatter("id_ID",IntlDateFormatter::FULL,IntlDateFormatter::SHORT,"Asia/Jakarta",IntlDateFormatter::GREGORIAN,"eeee, dd MMMM yyyy 'pukul' HH.mm z"))->format(new DateTime($r->tanggal.' '.$r->jam)) }}
+                                                    {{ (new IntlDateFormatter("id_ID",IntlDateFormatter::FULL,IntlDateFormatter::SHORT,"Asia/Jakarta",IntlDateFormatter::GREGORIAN,"eeee, dd MMM yyyy '-' HH.mm z"))->format(new DateTime($r->tanggal.' '.$r->jam)) }}
                                                 </span>
                                             </h3>
 
@@ -293,7 +293,7 @@
                                                             <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">
                                                                 Keluhan
                                                             </td>
-                                                            <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">{{ $r->keluhan === '' ? '-' : $r->keluhan }}</td>
+                                                            <td class="px-4 py-2 text-sm text-emerald-800 leading-relaxed">{!! $r->keluhan === '' ? '-' : nl2br($r->keluhan) !!}</td>
                                                         </tr>
 
                                                         <tr class="hover:bg-emerald-200">
@@ -462,14 +462,14 @@
                                                             <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">
                                                                 Penilaian
                                                             </td>
-                                                            <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">{{ $r->penilaian === '' ? '-' : $r->penilaian }}</td>
+                                                            <td class="px-4 py-2 text-sm text-emerald-800 leading-relaxed">{!! $r->penilaian === '' ? '-' : nl2br($r->penilaian) !!}</td>
                                                         </tr>
 
                                                         <tr class="hover:bg-emerald-200">
                                                             <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">
                                                                 Pemeriksaan
                                                             </td>
-                                                            <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">{{ $r->pemeriksaan === '' ? '-' : $r->pemeriksaan }}</td>
+                                                            <td class="px-4 py-2 text-sm text-emerald-800 leading-relaxed">{!! $r->pemeriksaan === '' ? '-' : nl2br($r->pemeriksaan) !!}</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -511,14 +511,14 @@
                                                             <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">
                                                                 Instruksi
                                                             </td>
-                                                            <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">{{ $r->instruksi === '' ? '-' : $r->instruksi }}</td>
+                                                            <td class="px-4 py-2 text-sm text-emerald-800 leading-relaxed">{!! $r->instruksi === '' ? '-' : nl2br($r->instruksi) !!}</td>
                                                         </tr>
 
                                                         <tr class="hover:bg-emerald-200">
                                                             <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">
                                                                 Evaluasi
                                                             </td>
-                                                            <td class="px-4 py-2 whitespace-nowrap text-sm text-emerald-800">{{ $r->evaluasi === '' ? '-' : $r->evaluasi }}</td>
+                                                            <td class="px-4 py-2 text-sm text-emerald-800 leading-relaxed">{!! $r->evaluasi === '' ? '-' : nl2br($r->evaluasi) !!}</td>
                                                         </tr>
 
                                                         <tr class="hover:bg-emerald-200">

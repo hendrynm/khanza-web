@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Autentikasi;
 use App\Http\Controllers\General;
 use App\Http\Controllers\Loket;
 use App\Http\Controllers\Notifikasi;
@@ -18,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::prefix('/')->name('publik.')->controller(Autentikasi::class)->group(function (){
+    Route::get('/', 'showLoginForm');
+    Route::get('/register', 'showRegistrationForm');
+    Route::post('/register', 'register');
+    Route::post('/login', 'login')->name('login');
+    Route::post('/logout', 'logout');
+});
 
 Route::prefix('admin')->name('admin.')->group(function (){
     Route::get('/beranda', [General::class, 'beranda'])->name('beranda');
@@ -112,13 +121,19 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::prefix('tindakan')->name('tindakan.')->controller(Tindakan::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
-        Route::get('/pilih', 'pilih')->name('pilih');
 
         Route::prefix('/jadwal')->name('jadwal.')->group(function (){
+            Route::get('/pilih', 'jadwal_pilih')->name('pilih');
             Route::get('/{nomor_medis}', 'jadwal_beranda')->name('beranda');
             Route::get('/{nomor_medis}/ruang/{uuid}', 'jadwal_ruang')->name('ruang');
             Route::post('/konfirmasi', 'jadwal_konfirmasi')->name('konfirmasi');
             Route::post('/konfirmasi/simpan', 'jadwal_konfirmasi_simpan')->name('konfirmasi.simpan');
+        });
+
+        Route::prefix('/catat')->name('catat.')->group(function (){
+            Route::get('/pilih', 'catat_pilih')->name('pilih');
+            Route::get('/{nomor_medis}', 'catat_beranda')->name('beranda');
+            Route::post('/{nomor_medis}', 'catat_simpan')->name('simpan');
         });
 
         Route::get('/detail', 'detail')->name('detail');
