@@ -25,9 +25,9 @@
                 <div class="grid gap-y-4">
                     <!-- Form Group -->
                     <div>
-                        <label for="nama_pengguna" class="block mb-2 font-semibold text-cyan-500">Nomor Peserta / Nomor Induk Dokter </label>
+                        <label for="nama_pengguna" class="block mb-2 font-semibold text-cyan-500">Nomor Peserta</label>
                         <div class="relative">
-                            <input type="text" id="nama_pengguna" name="nama_pengguna" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-cyan-500 focus:ring-cyan-500" required placeholder="Masukkan nomor peserta atau nomor induk dokter">
+                            <input type="text" id="nama_pengguna" name="nama_pengguna" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-cyan-500 focus:ring-cyan-500" required placeholder="Masukkan nomor peserta atau nomor pegawai">
                         </div>
                     </div>
                     <!-- End Form Group -->
@@ -36,7 +36,7 @@
                     <div>
                         <label for="kata_sandi" class="block mb-2 font-semibold text-cyan-500">Kata Sandi</label>
                         <div class="relative">
-                            <input type="password" id="kata_sandi" name="kata_sandi" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-cyan-500 focus:ring-cyan-500" required placeholder="Masukkan kata sandi">
+                            <input type="password" id="kata_sandi" name="kata_sandi" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-cyan-500 focus:ring-cyan-500" required placeholder="Masukkan kata sandi anda">
                         </div>
                     </div>
                     <!-- End Form Group -->
@@ -50,6 +50,13 @@
                 </div>
             </form>
             <!-- End Form -->
+
+            <div class="mt-5 text-center text-sm text-gray-600">
+                Belum memiliki akun?
+                <a class="text-cyan-500 decoration-2 hover:underline font-semibold" href="#">
+                    Daftar disini
+                </a>
+            </div>
         </div>
     </div>
 </div>

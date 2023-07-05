@@ -2,41 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AutentikasiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class Autentikasi extends Controller
 {
-    public function showLoginForm()
+    public AutentikasiService $autentikasiService;
+
+    public function __construct()
+    {
+        $this->autentikasiService = new AutentikasiService();
+    }
+
+    public function login_form()
     {
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        return redirect()->to('/admin/beranda');
-//        $credentials = $request->validate([
-//            'nomor' => 'required|string',
-//            'password' => 'required|string',
-//        ]);
-//
-//        if (Auth::attempt($credentials)) {
-//            $request->session()->regenerate();
-//
-//            return redirect('/admin/beranda');
-//        } else {
-//            return redirect('/')->with('error', 'Invalid credentials.');
-//        }
+        $cek_login = $this->autentikasiService->login($request);
+
+        if($cek_login)
+        {
+            toast('Login berhasil.', 'success');
+            return redirect()->to('/admin/beranda');
+        }
+
+        toast('Nomor peserta atau kata sandi salah.', 'error');
+        return redirect()->back();
     }
 
-    public function logout(Request $request)
+    public function admin_beranda()
     {
-        Auth::logout();
+        return view('beranda');
+    }
 
-        $request->session()->invalidate();
-
-        return redirect('/')->with('success', 'Logged out successfully.');
+    public function admin_keluar()
+    {
+        $this->autentikasiService->setSessionHapus();
+        return redirect()->to('/');
     }
 }
 

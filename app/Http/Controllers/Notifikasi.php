@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\NotifikasiService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class Notifikasi extends Controller
 {
@@ -17,5 +19,18 @@ class Notifikasi extends Controller
     public function beranda(): View
     {
         return view('notifikasi.beranda');
+    }
+
+    public function simpan(Request $request): RedirectResponse
+    {
+        $simpan = $this->notifikasiService->setNomorHP($request);
+
+        if($simpan)
+        {
+            toast('Data nomor HP berhasil disimpan', 'success');
+            return redirect()->route('admin.notifikasi.beranda');
+        }
+        toast('Data gagal disimpan, mohon coba lagi', 'error');
+        return redirect()->back();
     }
 }

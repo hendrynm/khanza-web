@@ -2,11 +2,26 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 use Twilio\Rest\Client;
 
 class NotifikasiService
 {
+    public function setNomorHP(Request $request): bool
+    {
+        $nomor_hp = $request->get('nomor_hp');
+        $aktivasi = $request->get('aktivasi');
+
+        return DB::table('web_plus_notifikasi')
+            ->where('id_pengguna','=','1')
+            ->update([
+                'nomor_wa' => $nomor_hp,
+                'is_aktif' => $aktivasi
+            ]);
+    }
+
     public function setKirimPengingatReservasi(string $nomor_tujuan, string $nama_pasien, string $tanggal, string $waktu, string $lokasi, string $tautan)
     {
         $account_sid = getenv('TWILIO_ACCOUNT_SID');

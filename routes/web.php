@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\Autentikasi;
-use App\Http\Controllers\General;
 use App\Http\Controllers\Loket;
 use App\Http\Controllers\Notifikasi;
 use App\Http\Controllers\RekamMedis;
 use App\Http\Controllers\Reservasi;
 use App\Http\Controllers\Tindakan;
+use App\Http\Middleware\CheckHakAkses;
+use App\Http\Middleware\CheckLogin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,15 +22,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/')->name('publik.')->controller(Autentikasi::class)->group(function (){
-    Route::get('/', 'showLoginForm');
+    Route::get('/', 'login_form');
     Route::get('/register', 'showRegistrationForm');
     Route::post('/register', 'register');
     Route::post('/login', 'login')->name('login');
-    Route::post('/logout', 'logout');
 });
 
-Route::prefix('admin')->name('admin.')->group(function (){
-    Route::get('/beranda', [General::class, 'beranda'])->name('beranda');
+Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(function (){
+    Route::get('/beranda', [Autentikasi::class, 'admin_beranda'])->name('beranda');
 
     Route::prefix('loket')->name('loket.')->controller(Loket::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
@@ -111,8 +111,6 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/daftar', 'daftar')->name('daftar');
     });
 
-    Route::get('/penjadwalan', [General::class, 'penjadwalan'])->name('penjadwalan');
-
     Route::prefix('rekam')->name('rekam_medis.')->controller(RekamMedis::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
         Route::get('/profil/{nomor_medis}', 'profil')->name('profil');
@@ -141,9 +139,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::prefix('notifikasi')->name('notifikasi.')->controller(Notifikasi::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
+        Route::post('/', 'simpan')->name('simpan');
     });
 
-    Route::get('/keluar', [General::class, 'keluar'])->name('keluar');
+    Route::get('/keluar', [Autentikasi::class, 'admin_keluar'])->name('keluar');
 });
 
 Route::fallback(function() {
