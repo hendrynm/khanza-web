@@ -5,10 +5,10 @@
 
 <!-- Page Heading -->
 <header>
-    <p class="text-2xl -mb-1 font-bold text-pink-600">Selamat Datang</p>
-    <h1 class="text-4xl font-bold text-gray-800">Dokter ABC</h1>
+    <p class="text-2xl -mb-1 font-bold text-blue-500">Selamat Datang</p>
+    <h1 class="text-4xl font-bold text-cyan-500">{{ $data }}</h1>
     <p class="mt-2 text-lg text-gray-800 ">
-        Silakan memilih menu yang tersedia di sebelah kiri atau bawah untuk melanjutkan.
+        Silakan memilih <b>menu</b> yang tersedia untuk melanjutkan.
     </p>
 </header>
 <!-- End Page Heading -->
@@ -17,6 +17,7 @@
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @if(session('level_akses') === 2)
         <!-- Card -->
         <div class="group flex flex-col h-full bg-blue-100 border border-gray-200 shadow-sm rounded-xl">
             <div class="h-36 flex flex-col justify-center items-center bg-blue-500 rounded-t-xl text-white">
@@ -36,6 +37,7 @@
             </div>
         </div>
         <!-- End Card -->
+        @endif
 
         <!-- Card -->
         <div class="group flex flex-col h-full bg-amber-100 border border-gray-200 shadow-sm rounded-xl   ">
@@ -78,6 +80,7 @@
         </div>
         <!-- End Card -->
 
+        @if(session('level_akses') === 3)
         <!-- Card -->
         <div class="group flex flex-col h-full bg-red-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-red-500 rounded-t-xl text-white">
@@ -97,7 +100,9 @@
             </div>
         </div>
         <!-- End Card -->
+        @endif
 
+        @if(session('level_akses') === 1)
         <!-- Card -->
         <div class="group flex flex-col h-full bg-purple-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-36 flex flex-col justify-center items-center bg-purple-500 rounded-t-xl text-white">
@@ -117,6 +122,7 @@
             </div>
         </div>
         <!-- End Card -->
+        @endif
     </div>
     <!-- End Grid -->
 </div>

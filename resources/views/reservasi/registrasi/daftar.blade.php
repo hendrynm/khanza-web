@@ -20,7 +20,7 @@
         <div class="grid md:grid-cols-3 gap-6 rounded-xl">
             @foreach($daftar as $d)
                 <div class="bg-amber-100 p-5 rounded-xl">
-                    <form action="{{ route('admin.reservasi.registrasi.hapus', $d->uuid) }}" method="post">
+                    <form action="{{ route('admin.reservasi.registrasi.hapus', $d->uuid) }}" method="get">
                         @csrf
 
                         <div class="grid gap-3 2xl:grid-cols-2">

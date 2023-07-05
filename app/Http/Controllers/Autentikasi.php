@@ -36,12 +36,15 @@ class Autentikasi extends Controller
 
     public function admin_beranda()
     {
-        return view('beranda');
+        $data = $this->autentikasiService->getDetailPengguna();
+
+        return view('beranda', ['data' => $data]);
     }
 
     public function admin_keluar()
     {
         $this->autentikasiService->setSessionHapus();
+        toast('Anda telah keluar.', 'success');
         return redirect()->to('/');
     }
 }

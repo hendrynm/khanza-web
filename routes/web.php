@@ -7,6 +7,7 @@ use App\Http\Controllers\RekamMedis;
 use App\Http\Controllers\Reservasi;
 use App\Http\Controllers\Tindakan;
 use App\Http\Middleware\CheckHakAkses;
+use App\Http\Middleware\CheckHakAksesMulti;
 use App\Http\Middleware\CheckLogin;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,16 @@ Route::prefix('/')->name('publik.')->controller(Autentikasi::class)->group(funct
     Route::post('/login', 'login')->name('login');
 });
 
+Route::prefix('admin/loket/publik')->name('admin.loket.publik.')->controller(Loket::class)->group(function (){
+    Route::get('/', 'publik_beranda')->name('beranda');
+    Route::get('/panggil/{uuid}', 'publik_panggil')->name('panggil');
+    Route::get('/cetak/{uuid}', 'publik_cetak')->name('cetak');
+});
+
 Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(function (){
     Route::get('/beranda', [Autentikasi::class, 'admin_beranda'])->name('beranda');
 
-    Route::prefix('loket')->name('loket.')->controller(Loket::class)->group(function (){
+    Route::prefix('loket')->name('loket.')->controller(Loket::class)->middleware(CheckHakAkses::class.':2')->group(function (){
         Route::get('/', 'beranda')->name('beranda');
 
         Route::prefix('tampil')->name('tampil.')->group(function (){
@@ -60,24 +67,18 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
                 Route::get('/{uuid}/hapus/{uuid_loket}', 'atur_loket_hapus')->name('hapus');
             });
         });
-
-        Route::prefix('publik')->name('publik.')->group(function (){
-            Route::get('/', 'publik_beranda')->name('beranda');
-            Route::get('/panggil/{uuid}', 'publik_panggil')->name('panggil');
-            Route::get('/cetak/{uuid}', 'publik_cetak')->name('cetak');
-        });
     });
 
     Route::prefix('reservasi')->name('reservasi.')->controller(Reservasi::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
 
-        Route::prefix('pasien')->name('pasien.')->group(function (){
+        Route::prefix('pasien')->name('pasien.')->middleware(CheckHakAkses::class.':1')->group(function (){
             Route::get('/', 'pasien_beranda')->name('beranda');
             Route::get('/{nomor_medis}', 'pasien_tujuan')->name('tujuan');
             Route::get('/{nomor_medis}/tujuan/{uuid}', 'pasien_jadwal')->name('jadwal');
         });
 
-        Route::prefix('registrasi')->name('registrasi.')->group(function (){
+        Route::prefix('registrasi')->name('registrasi.')->middleware(CheckHakAkses::class.':1')->group(function (){
             Route::get('/', 'registrasi_beranda')->name('beranda');
             Route::get('/daftar/{nomor_medis}', 'registrasi_daftar')->name('daftar');
             Route::post('/konfirmasi','registrasi_konfirmasi')->name('konfirmasi');
@@ -85,7 +86,7 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
             Route::get('/hapus/{uuid}', 'registrasi_hapus')->name('hapus');
         });
 
-        Route::prefix('atur')->name('atur.')->group(function (){
+        Route::prefix('atur')->name('atur.')->middleware(CheckHakAksesMulti::class.':2,3')->group(function (){
             Route::get('/', 'atur_beranda')->name('beranda');
             Route::get('/tambah', 'atur_tambah')->name('tambah');
             Route::post('/tambah', 'atur_tambah_post')->name('tambah.post');
@@ -94,7 +95,7 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
             Route::get('/hapus/{uuid}', 'atur_hapus')->name('hapus');
         });
 
-        Route::prefix('dokter')->name('dokter.')->group(function (){
+        Route::prefix('dokter')->name('dokter.')->middleware(CheckHakAksesMulti::class.':2,3')->group(function (){
             Route::get('/{uuid_ruang}', 'dokter_beranda')->name('beranda');
             Route::get('/{uuid_ruang}/tambah', 'dokter_tambah')->name('tambah');
             Route::post('/{uuid_ruang}/tambah', 'dokter_tambah_post')->name('tambah.post');
@@ -103,7 +104,7 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
             Route::get('/{uuid_ruang}/hapus/{uuid_jadwal}', 'dokter_hapus')->name('hapus');
         });
 
-        Route::prefix('/simpan')->name('simpan.')->group(function (){
+        Route::prefix('/simpan')->name('simpan.')->middleware(CheckHakAksesMulti::class.':2,3')->group(function (){
             Route::get('/', 'simpan_beranda')->name('beranda');
             Route::get('/{uuid}', 'simpan_detail')->name('detail');
         });
@@ -117,7 +118,7 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
         Route::get('/detail/{nomor_medis}/{nomor_rawat}', 'detail')->name('detail');
     });
 
-    Route::prefix('tindakan')->name('tindakan.')->controller(Tindakan::class)->group(function (){
+    Route::prefix('tindakan')->name('tindakan.')->controller(Tindakan::class)->middleware(CheckHakAkses::class.':3')->group(function (){
         Route::get('/', 'beranda')->name('beranda');
 
         Route::prefix('/jadwal')->name('jadwal.')->group(function (){
@@ -137,7 +138,7 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
         Route::get('/detail', 'detail')->name('detail');
     });
 
-    Route::prefix('notifikasi')->name('notifikasi.')->controller(Notifikasi::class)->group(function (){
+    Route::prefix('notifikasi')->name('notifikasi.')->middleware(CheckHakAkses::class.':1')->controller(Notifikasi::class)->group(function (){
         Route::get('/', 'beranda')->name('beranda');
         Route::post('/', 'simpan')->name('simpan');
     });

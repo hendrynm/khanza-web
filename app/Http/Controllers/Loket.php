@@ -11,7 +11,8 @@ class Loket extends Controller
 {
     public AntriLoket $antriLoket;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->antriLoket = new AntriLoket();
     }
 
@@ -57,6 +58,7 @@ class Loket extends Controller
     {
         $this->antriLoket->setDaftarRuangan($request);
 
+        toast('Data berhasil ditambahkan', 'success');
         return redirect()->route('admin.loket.atur.beranda');
     }
 
@@ -71,6 +73,7 @@ class Loket extends Controller
     {
         $this->antriLoket->setDaftarRuangan($request);
 
+        toast('Data berhasil diubah', 'success');
         return redirect()->route('admin.loket.atur.beranda');
     }
 
@@ -78,6 +81,7 @@ class Loket extends Controller
     {
         $this->antriLoket->deleteDaftarRuangan($uuid_ruangan);
 
+        toast('Data berhasil dihapus', 'success');
         return redirect()->route('admin.loket.atur.beranda');
     }
 
@@ -100,6 +104,7 @@ class Loket extends Controller
     {
         $this->antriLoket->setNomorLoketRuangan($request);
 
+        toast('Data berhasil ditambahkan', 'success');
         return redirect()->route('admin.loket.atur.loket.beranda', strtoupper($request->uuid_ruangan));
     }
 
@@ -116,6 +121,7 @@ class Loket extends Controller
     {
         $this->antriLoket->setNomorLoketRuangan($request);
 
+        toast('Data berhasil diubah', 'success');
         return redirect()->route('admin.loket.atur.loket.beranda', strtoupper($request->uuid_ruangan));
     }
 
@@ -123,6 +129,7 @@ class Loket extends Controller
     {
         $this->antriLoket->deleteNomorLoketRuangan($uuid_loket);
 
+        toast('Data berhasil dihapus', 'success');
         return redirect()->route('admin.loket.atur.loket.beranda', $uuid_ruangan);
     }
 

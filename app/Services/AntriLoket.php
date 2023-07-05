@@ -51,6 +51,10 @@ class AntriLoket
 
     public function setDaftarRuangan(Request $request): bool
     {
+        $request->validate([
+            'foto' => 'required|file|max:1024|mimes:jpeg,png,jpg,heic',
+        ]);
+
         $nama_ruang = $request->nama_ruang;
         $loket = $request->loket;
         $reservasi = $request->reservasi;

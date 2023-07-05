@@ -6,8 +6,10 @@
         <label for="nama_ruang" class="block text-sm text-gray-700 font-medium mb-2">Nama Ruang</label>
         <input type="text" name="nama_ruang" id="nama_ruang" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-amber-500 focus:ring-amber-500 disabled:bg-slate-200 text-slate-700" value="{{ $ruang->nama_ruang ?? '' }}" disabled>
     </div>
+
+    @if(session('level_akses') === 2)
     <div class="col-span-2">
-        <label for="id_dokter" class="block text-sm text-gray-700 font-medium mb-2">Dokter</label>
+        <label for="id_dokter" class="block text-sm text-gray-700 font-medium mb-2">Nama Dokter</label>
         <select name="id_dokter" id="id_dokter" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-amber-500 focus:ring-amber-500">
             <option value="" disabled selected>-- Pilih --</option>
             @foreach($dokter as $d)
@@ -19,10 +21,28 @@
             @endforeach
         </select>
     </div>
+    @endif
+
+    @if(session('level_akses') === 3)
+    <div class="col-span-2">
+        <?php
+        foreach($dokter as $d)
+        {
+            if($d->id_dokter === session('nama_pengguna'))
+                $dokter = $d->nama_dokter;
+        }
+        ?>
+        <label for="id_dokter_form" class="block text-sm text-gray-700 font-medium mb-2">Dokter</label>
+        <input type="text" name="id_dokter_form" id="id_dokter_form" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-amber-500 focus:ring-amber-500 disabled:bg-slate-200 text-slate-700" value="{{ $dokter }}" disabled>
+        <input type="hidden" name="id_dokter" value="{{ session('nama_pengguna') }}">
+    </div>
+    @endif
+
     <div class="col-span-2 2xl:col-span-1">
         <label for="tanggal" class="block text-sm text-gray-700 font-medium mb-2">Tanggal</label>
         <input type="date" name="tanggal" id="tanggal" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-slate-100 text-slate-700" value="{{ $jadwal->tanggal ?? '' }}">
     </div>
+
     <div class="grid lg:grid-cols-2 gap-3">
         <div>
             <label for="waktu_mulai" class="block text-sm text-gray-700 font-medium mb-2">Mulai</label>

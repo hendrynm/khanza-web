@@ -56,6 +56,7 @@ class ReservasiDokter extends DataTableComponent
             ->join(self::TABEL_RUANGAN, self::TABEL_JADWAL_DOKTER.'.id_ruang', '=', self::TABEL_RUANGAN.'.id_ruang')
             ->where(self::TABEL_JADWAL_DOKTER.'.tanggal', '>=', date('Y-m-d'))
             ->where(self::TABEL_RUANGAN.'.uuid', '=', $this->uuid)
+            ->where(self::TABEL_JADWAL_DOKTER.'.id_dokter','=',session('nama_pengguna'))
             ->orderBy(self::TABEL_JADWAL_DOKTER.'.tanggal');
     }
 }

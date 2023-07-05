@@ -9,13 +9,21 @@ use Twilio\Rest\Client;
 
 class NotifikasiService
 {
+    public function getNomorHP(int $id_pengguna): stdClass
+    {
+        return DB::table('web_plus_notifikasi')
+            ->where('id_pengguna','=',$id_pengguna)
+            ->first();
+    }
+
     public function setNomorHP(Request $request): bool
     {
         $nomor_hp = $request->get('nomor_hp');
         $aktivasi = $request->get('aktivasi');
+        $id_pengguna = $request->get('id_pengguna');
 
         return DB::table('web_plus_notifikasi')
-            ->where('id_pengguna','=','1')
+            ->where('id_pengguna','=',$id_pengguna)
             ->update([
                 'nomor_wa' => $nomor_hp,
                 'is_aktif' => $aktivasi

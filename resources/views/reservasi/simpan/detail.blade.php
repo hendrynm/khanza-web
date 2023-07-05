@@ -50,7 +50,7 @@
 <header>
     <h1 class="text-4xl font-bold text-amber-600">Detail Reservasi</h1>
     <p class="mt-2 text-lg text-gray-800">
-        Silakan melihat <b>data</b> di bawah untuk melanjutkan. // todo: inject kode dokter dari session ke javascript
+        Silakan melihat <b>data</b> di bawah untuk melanjutkan.
     </p>
 </header>
 <!-- End Page Heading -->
@@ -68,7 +68,7 @@
 
 <script type="module">
     $(document).ready(function (){
-        let kode_dokter = "D0000003";
+        let kode_dokter = "{{ session('nama_pengguna') }}";
         if (window.innerWidth <= 768) {
             tampilkan_kalender(0, kode_dokter).then(() => {
                 ubah_tampilan_tanggal();

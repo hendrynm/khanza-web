@@ -61,4 +61,39 @@ class AutentikasiService
     {
         return session()->key('level_akses');
     }
+
+    public function getIDPengguna(string $nama_pengguna): int
+    {
+        $data = DB::table(self::TABEL_PENGGUNA_BARU)
+            ->select('id_pengguna')
+            ->whereRaw("nama_pengguna = AES_ENCRYPT('$nama_pengguna', 'nur')")
+            ->first();
+        return $data->id_pengguna;
+    }
+
+    public function getDetailPengguna(): string
+    {
+        $nomor = session('nama_pengguna');
+        switch(session('level_akses'))
+        {
+            case(1):
+                $data = DB::table('pasien')
+                    ->where('no_rkm_medis','=', $nomor)
+                    ->first();
+                return $data->nm_pasien;
+            case(2):
+                $data = DB::table('petugas')
+                    ->where('nip', '=', $nomor)
+                    ->first();
+                return $data->nama;
+            case(3):
+                $data = DB::table('dokter')
+                    ->where('kd_dokter', '=', $nomor)
+                    ->first();
+                return $data->nm_dokter;
+            default:
+                break;
+        }
+        return '';
+    }
 }

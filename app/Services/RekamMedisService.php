@@ -56,8 +56,32 @@ class RekamMedisService
 
     public function getDaftarPasien(): stdClass
     {
-        $pasien = DB::table(self::TABEL_PASIEN_BAWAAN)
-            ->get();
+        switch(session('level_akses'))
+        {
+            case(1):
+                $nama_pengguna = session('nama_pengguna');
+                $pengguna = DB::table('web_plus_autentikasi_pengguna')
+                    ->whereRaw("nama_pengguna = AES_ENCRYPT('$nama_pengguna','nur')")
+                    ->first();
+                $id_pengguna = $pengguna->id_pengguna;
+
+                $korelasi = DB::table('web_plus_autentikasi_korelasi')
+                    ->where('id_pengguna', '=', $id_pengguna)
+                    ->get();
+                $korelasi_arr = [];
+                foreach($korelasi as $i=>$k)
+                    $korelasi_arr[$i] = $k->nomor;
+
+                $pasien = DB::table(self::TABEL_PASIEN_BAWAAN)
+                    ->whereIn('no_rkm_medis', $korelasi_arr)
+                    ->get();
+                break;
+
+            default:
+                $pasien = DB::table(self::TABEL_PASIEN_BAWAAN)
+                    ->get();
+                break;
+        }
 
         $hasil = [];
         $hasil_objek = new stdClass();

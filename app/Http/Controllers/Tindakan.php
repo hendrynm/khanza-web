@@ -83,6 +83,8 @@ class Tindakan extends Controller
                 'pasien' => $pasien
             ]);
         }
+
+        toast('Jadwal sudah penuh, silakan pilih jadwal lain', 'error');
         return redirect()->route('admin.tindakan.jadwal.ruang', [
             'nomor_medis' => base64_encode($request->nomor_medis),
             'uuid' => $request->uuid_ruang
@@ -94,13 +96,15 @@ class Tindakan extends Controller
         $cek = $this->reservasiService->setJadwalPasien($request);
 
         if ($cek) {
+            toast('Penjadwalan pasien berhasil', 'success');
             return redirect()->route('admin.tindakan.beranda');
-        } else {
-            return redirect()->route('admin.tindakan.jadwal.ruang', [
-                'nomor_medis' => base64_encode($request->nomor_medis),
-                'uuid' => $request->uuid_ruang
-            ]);
         }
+
+        toast('Penjadwalan gagal karena jadwal penuh. Silakan pilih jadwal lain.', 'error');
+        return redirect()->route('admin.tindakan.jadwal.ruang', [
+            'nomor_medis' => base64_encode($request->nomor_medis),
+            'uuid' => $request->uuid_ruang
+        ]);
     }
 
     public function catat_pilih(): View

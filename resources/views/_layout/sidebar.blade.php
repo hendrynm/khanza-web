@@ -39,6 +39,7 @@
                 </a>
             </li>
 
+            @if(session('level_akses') === 2)
             <li class="hs-accordion" id="users-accordion">
                 <a class="hs-accordion-toggle flex items-center gap-x-3.5 py-4 px-7 -mx-5 rounded-md hover:bg-gray-100 hover:text-blue-500" href="{{ route('admin.loket.beranda') }}" id="select-loket">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -47,6 +48,7 @@
                     Loket Antrean
                 </a>
             </li>
+            @endif
 
             <li class="hs-accordion" id="projects-accordion">
                 <a class="hs-accordion-toggle flex items-center gap-x-3.5 py-4 px-7 -mx-5 rounded-md hover:bg-gray-100 hover:text-amber-500" href="{{ route('admin.reservasi.beranda') }}" id="select-reservasi">
@@ -66,6 +68,7 @@
                 </a>
             </li>
 
+            @if(session('level_akses') === 3)
             <li>
                 <a class="flex items-center gap-x-3.5 py-4 px-7 -mx-5 rounded-md hover:bg-gray-100 hover:text-red-500" href="{{ route('admin.tindakan.beranda') }}" id="select-tindakan">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -74,7 +77,9 @@
                     Tindakan Medis
                 </a>
             </li>
+            @endif
 
+            @if(session('level_akses') === 1)
             <li>
                 <a class="flex items-center gap-x-3.5 py-4 px-7 -mx-5 rounded-md hover:bg-gray-100 hover:text-purple-500" href="{{ route('admin.notifikasi.beranda') }}" id="select-notifikasi">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -83,6 +88,7 @@
                     Notifikasi
                 </a>
             </li>
+            @endif
 
             <li>
                 <a class="flex items-center gap-x-3.5 py-4 px-7 -mx-5 text-gray-800 rounded-md hover:bg-gray-100" href="{{ route('admin.keluar') }}" id="select-keluar">

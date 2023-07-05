@@ -16,6 +16,7 @@
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        @if(session('level_akses') === 1)
         <!-- Card -->
         <div class="group flex flex-col h-full bg-amber-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-60 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl text-white">
@@ -55,7 +56,9 @@
             </div>
         </div>
         <!-- End Card -->
+        @endif
 
+        @if(session('level_akses') === 3)
         <!-- Card -->
         <div class="group flex flex-col h-full bg-amber-100 border border-gray-200 shadow-sm rounded-xl">
             <div class="h-60 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl text-white">
@@ -75,7 +78,9 @@
             </div>
         </div>
         <!-- End Card -->
+        @endif
 
+        @if(session('level_akses') === 2 || session('level_akses') === 3)
         <!-- Card -->
         <div class="group flex flex-col h-full bg-slate-100 border border-gray-200 shadow-sm rounded-xl   ">
             <div class="h-60 flex flex-col justify-center items-center bg-slate-500 rounded-t-xl text-white">
@@ -96,6 +101,7 @@
             </div>
         </div>
         <!-- End Card -->
+        @endif
     </div>
     <!-- End Grid -->
 </div>

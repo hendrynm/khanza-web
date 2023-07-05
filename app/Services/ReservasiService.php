@@ -32,6 +32,16 @@ class ReservasiService
     public function getDaftarReservasi(string $nomor_medis): stdClass
     {
         $pasien = DB::table(self::TABEL_JADWAL_PASIEN)
+            ->select([
+                self::TABEL_JADWAL_PASIEN.'.uuid',
+                self::TABEL_JADWAL_PASIEN.'.tanggal',
+                self::TABEL_JADWAL_PASIEN.'.waktu_mulai',
+                self::TABEL_JADWAL_PASIEN.'.waktu_selesai',
+                self::TABEL_JADWAL_PASIEN.'.id_dokter',
+                self::TABEL_DOKTER_BAWAAN.'.nm_dokter',
+                self::TABEL_JADWAL_PASIEN.'.id_ruang',
+                self::TABEL_RUANGAN.'.nama_ruang'
+            ])
             ->join(self::TABEL_DOKTER_BAWAAN, self::TABEL_JADWAL_PASIEN.'.id_dokter', '=', self::TABEL_DOKTER_BAWAAN.'.kd_dokter')
             ->join(self::TABEL_RUANGAN, self::TABEL_JADWAL_PASIEN.'.id_ruang', '=', self::TABEL_RUANGAN.'.id_ruang')
             ->where('nomor_medis', '=', $nomor_medis)

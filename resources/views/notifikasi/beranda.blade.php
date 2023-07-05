@@ -44,9 +44,10 @@
         <div class="bg-purple-100 p-10">
             <form action="" method="post">
                 <div class="grid grid-cols-6 gap-5 2xl:gap-8">
+                    @csrf
                     <div class="col-span-6 lg:col-span-3">
                         <label for="nomor_hp" class="block text-sm text-gray-700 font-medium mb-2">Nomor HP</label>
-                        <input type="text" name="nomor_hp" id="nomor_hp" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-purple-500 focus:ring-purple-500 disabled:bg-slate-100 text-slate-500" placeholder="08123456789" value="{{ $notifikasi->nomor_hp ?? '' }}">
+                        <input type="text" name="nomor_hp" id="nomor_hp" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-purple-500 focus:ring-purple-500 disabled:bg-slate-100 text-slate-700" placeholder="08123456789" value="{{ $notifikasi->nomor_wa ?? '' }}">
                     </div>
 
                     <div class="col-span-6 lg:col-span-3">
@@ -110,7 +111,7 @@
         const tombol_hp = document.getElementById('hp_aktif');
         tombol_hp.addEventListener('click', function() {
             let is_aktif = tombol_hp.getAttribute('aria-hp');
-            let nilai = (is_aktif === 'true') ? '0' : '1' ;
+            let nilai = (is_aktif === 'true') ? '1' : '0' ;
             const input = document.getElementById('aktivasi');
             input.setAttribute('value', nilai);
         });

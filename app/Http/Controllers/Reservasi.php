@@ -67,6 +67,7 @@ class Reservasi extends Controller
     {
         $this->reservasiService->setDetailRuangan($request);
 
+        toast('Ruangan berhasil ditambahkan', 'success');
         return redirect()->route('admin.reservasi.atur.beranda');
     }
 
@@ -83,6 +84,7 @@ class Reservasi extends Controller
     {
         $this->reservasiService->setDetailRuangan($request);
 
+        toast('Ruangan berhasil diubah', 'success');
         return redirect()->route('admin.reservasi.atur.beranda');
     }
 
@@ -90,6 +92,7 @@ class Reservasi extends Controller
     {
         $this->reservasiService->deleteDetailRuangan($uuid_ruang);
 
+        toast('Ruangan berhasil dihapus', 'success');
         return redirect()->route('admin.reservasi.atur.beranda');
     }
 
@@ -113,6 +116,7 @@ class Reservasi extends Controller
     {
         $this->reservasiService->setDetailJadwalDokter($request);
 
+        toast('Jadwal dokter berhasil ditambahkan', 'success');
         return redirect()->route('admin.reservasi.dokter.beranda', [
             'uuid_ruang' => $request->uuid_ruang
         ]);
@@ -135,6 +139,7 @@ class Reservasi extends Controller
     {
         $this->reservasiService->setDetailJadwalDokter($request);
 
+        toast('Jadwal dokter berhasil diubah', 'success');
         return redirect()->route('admin.reservasi.dokter.beranda', [
             'uuid_ruang' => $request->uuid_ruang
         ]);
@@ -144,6 +149,7 @@ class Reservasi extends Controller
     {
         $this->reservasiService->deleteDetailJadwalDokter($uuid_jadwal);
 
+        toast('Jadwal dokter berhasil dihapus', 'success');
         return redirect()->route('admin.reservasi.dokter.beranda', [
             'uuid_ruang' => $uuid_ruang
         ]);
@@ -198,6 +204,7 @@ class Reservasi extends Controller
                 'pasien' => $pasien
             ]);
         }
+        toast('Jadwal sudah penuh. Silakan pilih jadwal lain', 'error');
         return redirect()->route('admin.reservasi.pasien.jadwal', [
             'nomor_medis' => base64_encode($request->nomor_medis),
             'uuid' => $request->uuid_ruang
@@ -209,19 +216,22 @@ class Reservasi extends Controller
         $cek = $this->reservasiService->setJadwalPasien($request);
 
         if ($cek) {
+            toast('Reservasi berhasil ditambahkan', 'success');
             return redirect()->route('admin.reservasi.beranda');
-        } else {
-            return redirect()->route('admin.reservasi.pasien.jadwal', [
-                'nomor_medis' => base64_encode($request->nomor_medis),
-                'uuid' => $request->uuid_ruang
-            ]);
         }
+
+        toast('Reservasi sudah penuh di jadwal ini. Silakan pilih jadwal lain', 'error');
+        return redirect()->route('admin.reservasi.pasien.jadwal', [
+            'nomor_medis' => base64_encode($request->nomor_medis),
+            'uuid' => $request->uuid_ruang
+        ]);
     }
 
     public function registrasi_hapus(string $uuid): RedirectResponse
     {
         $this->reservasiService->deleteJadwalPasien($uuid);
 
+        toast('Reservasi berhasil dihapus', 'success');
         return redirect()->route('admin.reservasi.beranda');
     }
 
