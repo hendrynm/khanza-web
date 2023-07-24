@@ -16,4 +16,7 @@ export default defineConfig({
             '$': 'jQuery',
         },
     },
+    optimizeDeps: {
+        include: ['select2'],
+    },
 });

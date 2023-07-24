@@ -23,9 +23,6 @@ class Loket extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id_loket')
-            ->setSearchVisibilityDisabled()
-            ->setPaginationDisabled()
-            ->setColumnSelectDisabled()
             ->setSearchEnabled()
             ->setSortingEnabled()
             ->setConfigurableAreas([
@@ -36,13 +33,19 @@ class Loket extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('No Loket', 'nomor_loket'),
-            Column::make('Kode Loket', 'kode_loket'),
-            Column::make('Nama Loket', 'nama_loket'),
-            Column::make('Warna', 'web_plus_antrean_warna.warna')
+            Column::make('No Loket', 'nomor_loket')
+                ->sortable(),
+            Column::make('Kode Loket', 'kode_loket')
+                ->sortable(),
+            Column::make('Nama Loket', 'nama_loket')
+                ->sortable()
+                ->searchable(),
+            Column::make('Warna', self::TABEL_WARNA.'.warna')
                 ->format(fn ($value) => view('livewire.loket.loket.warna', ['warna' => $value])),
             Column::make('Jenis', 'bpjs')
-                ->format(fn ($value) => view('livewire.loket.loket.jenis', ['jenis' => $value])),
+                ->format(fn ($value) => view('livewire.loket.loket.jenis', ['jenis' => $value]))
+                ->sortable()
+                ->searchable(),
             Column::make('Aksi', 'uuid')
                 ->format(fn ($value) => view('livewire.loket.loket.aksi', ['uuid' => $value])),
         ];
@@ -52,7 +55,6 @@ class Loket extends DataTableComponent
     {
         return AntreanLoket::join(self::TABEL_WARNA, self::TABEL_LOKET . '.id_warna', '=', self::TABEL_WARNA . '.id_warna')
             ->join(self::TABEL_RUANGAN, self::TABEL_LOKET . '.id_ruang', '=', self::TABEL_RUANGAN . '.id_ruang')
-            ->where(self::TABEL_RUANGAN . '.uuid', $this->uuid)
-            ->orderBy(self::TABEL_LOKET . '.nomor_loket');
+            ->where(self::TABEL_RUANGAN . '.uuid', $this->uuid);
     }
 }

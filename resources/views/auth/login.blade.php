@@ -53,7 +53,7 @@
 
             <div class="mt-5 text-center text-sm text-gray-600">
                 Belum memiliki akun?
-                <a class="text-cyan-500 decoration-2 hover:underline font-semibold" href="#">
+                <a class="text-cyan-500 decoration-2 hover:underline font-semibold" href="/register">
                     Daftar disini
                 </a>
             </div>

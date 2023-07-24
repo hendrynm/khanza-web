@@ -25,4 +25,19 @@ class JadwalDokter extends Model
     {
         return $this->belongsTo(Dokter::class);
     }
+
+    public function pasien()
+    {
+        return $this->belongsTo(Pasien::class);
+    }
+
+    public function webplusreservasipasien()
+    {
+        return $this->hasMany(JadwalPasien::class);
+    }
+
+    public function jadwal()
+    {
+        return $this->hasMany(JadwalPasien::class);
+    }
 }

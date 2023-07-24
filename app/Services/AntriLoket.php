@@ -10,7 +10,6 @@ use stdClass;
 
 class AntriLoket
 {
-    private const TABEL_NOMOR_ANTREAN_BAWAAN = 'antriloket';
     private const TABEL_NOMOR_ANTREAN_BARU = 'web_plus_antrean_nomor';
     private const TABEL_RUANGAN = 'web_plus_umum_ruangan';
     private const TABEL_NOMOR_LOKET = 'web_plus_antrean_loket';
@@ -255,9 +254,20 @@ class AntriLoket
 
     public function getSisaNomorAntrean(int $id_ruang, string $kode_loket): int
     {
+        $sudah = DB::table(self::TABEL_NOMOR_ANTREAN_BARU)
+            ->select('nomor_antrean')
+            ->join(self::TABEL_NOMOR_LOKET, self::TABEL_NOMOR_ANTREAN_BARU.'.id_loket', '=', self::TABEL_NOMOR_LOKET.'.id_loket')
+            ->where(self::TABEL_NOMOR_ANTREAN_BARU.'.id_ruang','=', $id_ruang)
+            ->where('kode_loket','=', $kode_loket)
+            ->where(self::TABEL_NOMOR_ANTREAN_BARU.'.status','=', 1)
+            ->get();
+
         return DB::table(self::TABEL_AMBIL_NOMOR)
             ->where('id_ruang','=', $id_ruang)
             ->where('kode_loket','=', $kode_loket)
+            ->whereDate('waktu','>=', date('Y-m-d 00:00:00'))
+            ->whereDate('waktu','<=', date('Y-m-d 23:59:59'))
+            ->whereNotIn('nomor_antrean', $sudah->pluck('nomor_antrean'))
             ->count('id_ambil');
     }
 
@@ -265,7 +275,8 @@ class AntriLoket
     {
         $id_ruang = $request->id_ruang;
         $id_loket = $request->id_loket;
-        $tanggal = date('Y-m-d');
+        $tanggal_awal = date('Y-m-d 00:00:00');
+        $tanggal_akhir = date('Y-m-d 23:59:59');
 
         $loket = DB::table(self::TABEL_NOMOR_LOKET)
             ->where('id_ruang','=', $id_ruang)
@@ -287,12 +298,14 @@ class AntriLoket
             ->select('nomor_antrean')
             ->where('id_ruang', '=', $id_ruang)
             ->where('kode_loket', '=', $kode_loket)
-            ->whereDate('waktu', '=', $tanggal)
+            ->whereDate('waktu', '>=', $tanggal_awal)
+            ->whereDate('waktu', '<=', $tanggal_akhir)
             ->whereNotIn('nomor_antrean', $nomor->pluck('nomor_antrean'))
             ->first();
 
         return $ambil;
     }
+
     public function setNomorAntreanSelesaiDipanggil(string $id_nomor): bool
     {
         return DB::table(self::TABEL_NOMOR_ANTREAN_BARU)
@@ -349,6 +362,8 @@ class AntriLoket
         $id_ruang = $ruang->id_ruang;
         $subquery = DB::table(self::TABEL_AMBIL_NOMOR)
             ->select(DB::raw('COUNT(*)'))
+            ->whereDate('waktu', '>=', date('Y-m-d 00:00:00'))
+            ->whereDate('waktu', '<=', date('Y-m-d 23:59:59'))
             ->whereColumn(self::TABEL_AMBIL_NOMOR.'.kode_loket', '=', self::TABEL_NOMOR_LOKET.'.kode_loket')
             ->where(self::TABEL_AMBIL_NOMOR.'.id_ruang', '=', $id_ruang);
 

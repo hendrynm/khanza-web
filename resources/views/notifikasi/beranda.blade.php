@@ -116,11 +116,14 @@
             input.setAttribute('value', nilai);
         });
 
-        $('#kirim-pesan-reservasi').on('click', function() {
+        $('#kirim-pesan-pengingat').on('click', function() {
             $.ajax({
                 url: "{{ route('ajax.notifikasi.reservasi') }}",
                 type: "GET",
                 success: function(data) {
+                    console.log(data);
+                },
+                error: function(data) {
                     console.log(data);
                 }
             });
@@ -131,6 +134,9 @@
                 url: "{{ route('ajax.notifikasi.rekap') }}",
                 type: "GET",
                 success: function(data) {
+                    console.log(data);
+                },
+                error: function(data) {
                     console.log(data);
                 }
             });

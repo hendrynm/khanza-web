@@ -12,9 +12,6 @@ class ReservasiRuang extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id_ruang')
-            ->setSearchVisibilityDisabled()
-            ->setPaginationDisabled()
-            ->setColumnSelectDisabled()
             ->setSearchEnabled()
             ->setSortingEnabled()
             ->setConfigurableAreas([
@@ -25,7 +22,9 @@ class ReservasiRuang extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Ruang', 'nama_ruang'),
+            Column::make('Nama Ruang', 'nama_ruang')
+                ->sortable()
+                ->searchable(),
             Column::make('Foto', 'foto')
                 ->format(fn ($value) => view('livewire.loket.ruang.gambar', ['gambar' => base64_encode($value)])),
             Column::make('Aksi', 'uuid')

@@ -91,6 +91,7 @@
                 <form action="{{ route('admin.reservasi.registrasi.konfirmasi.simpan') }}" method="post">
                     @csrf
                     <input type="hidden" name="uuid_ruang" id="uuid_ruang" value="{{ $uuid_ruang }}">
+                    <input type="hidden" name="uuid_jadwal" id="uuid_jadwal" value="{{ $uuid_jadwal }}">
 
                     <div class="grid gap-3 2xl:grid-cols-2">
                         <div class="col-span-2">
@@ -119,13 +120,13 @@
                         <div class="grid col-span-2 lg:grid-cols-2 gap-3">
                             <div>
                                 <label for="waktu_mulai" class="block text-sm text-gray-700 font-medium mb-2">Mulai</label>
-                                <input type="text" name="waktu_mulai_form" id="waktu_mulai_form" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-slate-200 text-slate-700" value="{{ date("H:i",strtotime($waktu)) }}" disabled>
-                                <input type="hidden" name="waktu_mulai" value="{{ $waktu }}">
+                                <input type="text" name="waktu_mulai_form" id="waktu_mulai_form" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-slate-200 text-slate-700" value="{{ date("H:i",strtotime($waktu_mulai)) }}" disabled>
+                                <input type="hidden" name="waktu_mulai" value="{{ $waktu_mulai }}">
                             </div>
                             <div>
                                 <label for="waktu_selesai" class="block text-sm text-gray-700 font-medium mb-2">Selesai</label>
-                                <input type="text" name="waktu_selesai_form" id="waktu_selesai_form" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-slate-200 text-slate-700" value="{{ date("H:i", strtotime($waktu) + (15 * 60)) }}" disabled>
-                                <input type="hidden" name="waktu_selesai" value="{{ date("H:i:s", strtotime($waktu) + (15 * 60)) }}">
+                                <input type="text" name="waktu_selesai_form" id="waktu_selesai_form" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-slate-200 text-slate-700" value="{{ date("H:i",strtotime($waktu_selesai)) }}" disabled>
+                                <input type="hidden" name="waktu_selesai" value="{{ $waktu_selesai }}">
                             </div>
                         </div>
                     </div>

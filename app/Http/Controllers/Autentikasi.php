@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AutentikasiService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,21 @@ class Autentikasi extends Controller
     public function __construct()
     {
         $this->autentikasiService = new AutentikasiService();
+    }
+
+    public function daftar_form()
+    {
+        $kelurahan = $this->autentikasiService->getDaftarKelurahan();
+        $kecamatan = $this->autentikasiService->getDaftarKecamatan();
+        $kabupaten = $this->autentikasiService->getDaftarKabupaten();
+        $provinsi = $this->autentikasiService->getDaftarProvinsi();
+
+        return view('auth.daftar', [
+            'kelurahan' => $kelurahan,
+            'kecamatan' => $kecamatan,
+            'kabupaten' => $kabupaten,
+            'provinsi' => $provinsi,
+        ]);
     }
 
     public function login_form()
@@ -32,6 +48,14 @@ class Autentikasi extends Controller
 
         toast('Nomor peserta atau kata sandi salah.', 'error');
         return redirect()->back();
+    }
+
+    public function daftar(Request $request): RedirectResponse
+    {
+        $daftar = $this->autentikasiService->daftar($request);
+
+        toast('Pendaftaran berhasil. Masukkan ' . $daftar . ' sebagai nama pengguna dan kata sandi.', 'success');
+        return redirect()->to('/');
     }
 
     public function admin_beranda()

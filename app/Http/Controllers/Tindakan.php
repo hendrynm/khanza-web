@@ -60,34 +60,27 @@ class Tindakan extends Controller
     public function jadwal_konfirmasi(Request $request): View|RedirectResponse
     {
         $uuid_ruang = $request->uuid_ruang;
+        $uuid_jadwal = $request->uuid_jadwal;
         $kode_dokter = $request->kode_dokter;
-        $waktu_dipilih = $request->waktu_dipilih;
         $nomor_medis = $request->nomor_medis;
-        $tanggal = explode('T', $waktu_dipilih)[0];
-        $waktu = explode('+',explode('T', $waktu_dipilih)[1])[0];
+        $tanggal = $request->tanggal;
+        $waktu_mulai = $request->waktu_mulai;
+        $waktu_selesai = $request->waktu_selesai;
 
-        $cek_sesuai = $this->reservasiService->cekJadwalPasienSesuai($uuid_ruang, $kode_dokter, $tanggal, $waktu);
-        if($cek_sesuai)
-        {
-            $ruang = $this->reservasiService->getDetailRuangan($uuid_ruang);
-            $dokter = $this->rekamMedisService->getDetailDokter($kode_dokter);
-            $pasien = $this->rekamMedisService->getDetailPasien(base64_decode($nomor_medis));
+        $ruang = $this->reservasiService->getDetailRuangan($uuid_ruang);
+        $dokter = $this->rekamMedisService->getDetailDokter($kode_dokter);
+        $pasien = $this->rekamMedisService->getDetailPasien(base64_decode($nomor_medis));
 
-            return view('tindakan.jadwal.konfirmasi', [
-                'uuid_ruang' => $uuid_ruang,
-                'kode_dokter' => $kode_dokter,
-                'tanggal' => $tanggal,
-                'waktu' => $waktu,
-                'ruang' => $ruang,
-                'dokter' => $dokter,
-                'pasien' => $pasien
-            ]);
-        }
-
-        toast('Jadwal sudah penuh, silakan pilih jadwal lain', 'error');
-        return redirect()->route('admin.tindakan.jadwal.ruang', [
-            'nomor_medis' => base64_encode($request->nomor_medis),
-            'uuid' => $request->uuid_ruang
+        return view('tindakan.jadwal.konfirmasi', [
+            'uuid_ruang' => $uuid_ruang,
+            'uuid_jadwal' => $uuid_jadwal,
+            'kode_dokter' => $kode_dokter,
+            'tanggal' => $tanggal,
+            'waktu_mulai' => $waktu_mulai,
+            'waktu_selesai' => $waktu_selesai,
+            'ruang' => $ruang,
+            'dokter' => $dokter,
+            'pasien' => $pasien
         ]);
     }
 
@@ -100,7 +93,7 @@ class Tindakan extends Controller
             return redirect()->route('admin.tindakan.beranda');
         }
 
-        toast('Penjadwalan gagal karena jadwal penuh. Silakan pilih jadwal lain.', 'error');
+        toast('Jadwal penuh atau sudah punya reservasi. Silakan pilih dokter atau jadwal lain.', 'error');
         return redirect()->route('admin.tindakan.jadwal.ruang', [
             'nomor_medis' => base64_encode($request->nomor_medis),
             'uuid' => $request->uuid_ruang

@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->name('publik.')->controller(Autentikasi::class)->group(function (){
     Route::get('/', 'login_form');
-    Route::get('/register', 'showRegistrationForm');
-    Route::post('/register', 'register');
+    Route::get('/register', 'daftar_form');
+    Route::post('/register', 'daftar')->name('daftar');
     Route::post('/login', 'login')->name('login');
 });
 
@@ -108,8 +108,6 @@ Route::prefix('admin')->name('admin.')->middleware(CheckLogin::class)->group(fun
             Route::get('/', 'simpan_beranda')->name('beranda');
             Route::get('/{uuid}', 'simpan_detail')->name('detail');
         });
-
-        Route::get('/daftar', 'daftar')->name('daftar');
     });
 
     Route::prefix('rekam')->name('rekam_medis.')->controller(RekamMedis::class)->group(function (){

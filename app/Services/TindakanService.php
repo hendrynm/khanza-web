@@ -11,7 +11,6 @@ class TindakanService
     private const TABEL_REGISTRASI_BAWAAN = 'reg_periksa';
     private const TABEL_PEMERIKSAAN_RAWAT_JALAN_BAWAAN = 'pemeriksaan_ralan';
 
-
     public function cekSudahRegistrasi(string $nomor_medis): string|null
     {
         $data = DB::table(self::TABEL_REGISTRASI_BAWAAN)

@@ -23,9 +23,6 @@ class ReservasiPasien extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id_dokter')
-            ->setSearchVisibilityDisabled()
-            ->setPaginationDisabled()
-            ->setColumnSelectDisabled()
             ->setSearchEnabled()
             ->setSortingEnabled();
     }
@@ -33,7 +30,9 @@ class ReservasiPasien extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Dokter', self::TABEL_DOKTER_BAWAAN.'.nm_dokter'),
+            Column::make('Nama Dokter', self::TABEL_DOKTER_BAWAAN.'.nm_dokter')
+                ->sortable()
+                ->searchable(),
             Column::make('Aksi', 'id_dokter')
                 ->format(fn ($value) => view('livewire.reservasi.pasien.aksi', ['id_dokter' => $value])),
         ];

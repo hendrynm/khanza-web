@@ -25,9 +25,6 @@ class ReservasiDokter extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id_jadwal')
-            ->setSearchVisibilityDisabled()
-            ->setPaginationDisabled()
-            ->setColumnSelectDisabled()
             ->setSearchEnabled()
             ->setSortingEnabled()
             ->setConfigurableAreas([
@@ -38,13 +35,21 @@ class ReservasiDokter extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Dokter', self::TABEL_DOKTER_BAWAAN.'.nm_dokter'),
+            Column::make('Nama Dokter', self::TABEL_DOKTER_BAWAAN.'.nm_dokter')
+                ->sortable()
+                ->searchable(),
             Column::make('Tanggal', 'tanggal')
-                ->format(fn ($value) => (new IntlDateFormatter("id_ID",IntlDateFormatter::FULL,IntlDateFormatter::NONE,"Asia/Jakarta",IntlDateFormatter::GREGORIAN,"eeee, dd MMMM yyyy"))->format(new DateTime($value))),
+                ->format(fn ($value) => (new IntlDateFormatter("id_ID",IntlDateFormatter::FULL,IntlDateFormatter::NONE,"Asia/Jakarta",IntlDateFormatter::GREGORIAN,"eeee, dd MMMM yyyy"))->format(new DateTime($value)))
+                ->sortable()
+                ->searchable(),
             Column::make('Mulai', 'waktu_mulai')
-                ->format(fn ($value) => date_format(date_create($value), 'H.i')),
+                ->format(fn ($value) => date_format(date_create($value), 'H.i'))
+                ->sortable()
+                ->searchable(),
             Column::make('Selesai', 'waktu_selesai')
-                ->format(fn ($value) => date_format(date_create($value), 'H.i')),
+                ->format(fn ($value) => date_format(date_create($value), 'H.i'))
+                ->sortable()
+                ->searchable(),
             Column::make('Aksi', 'uuid')
                 ->format(fn ($value) => view('livewire.reservasi.dokter.aksi', ['uuid' => $value])),
         ];

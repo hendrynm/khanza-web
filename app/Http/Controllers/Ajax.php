@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AntriLoket;
+use App\Services\AutentikasiService;
 use App\Services\NotifikasiService;
 use App\Services\ReservasiService;
 use Illuminate\Http\JsonResponse;
@@ -13,6 +14,7 @@ class Ajax extends Controller
     public AntriLoket $antriLoket;
     public NotifikasiService $notifikasiService;
     public ReservasiService $reservasiService;
+    public AutentikasiService $autentikasiService;
 
     public function __construct(){
         $this->antriLoket = new AntriLoket();
